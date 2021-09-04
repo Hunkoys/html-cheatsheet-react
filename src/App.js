@@ -1,24 +1,22 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import network from './app/util/network';
+
+function newEntryClickHandler(e) {
+  network.post('/entry', { text: 'Bwisi' }).then((yo) => console.log(yo));
+}
 
 function App() {
+  const [entries, setEntries] = useState();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <header>HTML Cheat Sheet</header>
+      <section id="content">
+        <ul id="entries">{entries}</ul>
+      </section>
+      <button onClick={newEntryClickHandler}>New Entry</button>
+    </main>
   );
 }
 
