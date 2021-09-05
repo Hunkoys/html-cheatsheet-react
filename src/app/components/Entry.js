@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+import createCase from '../data/createCase';
 import debounce from '../util/debounce';
+import Case from './entry/Case';
 
 const debouncedOnChange = debounce(300, (callback) => {
   callback();
@@ -9,33 +11,36 @@ const Entry = ({ children, ...props }) => {
   const titleEl = useRef(null);
   const descriptionEl = useRef(null);
 
-  const [title, setTitle] = useState(children.title);
-  const [description, setDescription] = useState(children.description);
+  const { title, description } = children;
+  const [cases, setCases] = useState([]);
 
   useEffect(() => {
     titleEl.current.innerText = title;
     descriptionEl.current.innerText = description;
+    setCases(children.cases);
   }, []);
 
-  const { id, onChange = () => {} } = props;
+  const { onChange = () => {} } = props;
+
+  function caseChange(i, part, value) {
+    cases[i][part] = value;
+    onChange('cases', cases);
+  }
+
+  // console.log(cases);
 
   return (
     <li className="item">
       <h2
         ref={titleEl}
-        type="text"
         className="title"
         contentEditable
         suppressContentEditableWarning
         onInput={({ target }) => {
           const value = target.innerText;
 
-          setTitle(value);
-          debouncedOnChange(() => {
-            onChange(id, 'title', value);
-          });
+          onChange('title', value);
         }}
-        // value={title}
       ></h2>
       <p
         ref={descriptionEl}
@@ -45,12 +50,35 @@ const Entry = ({ children, ...props }) => {
         onInput={({ target }) => {
           const value = target.innerText;
 
-          setDescription(value);
-          debouncedOnChange(() => {
-            onChange(id, 'description', value);
-          });
+          onChange('description', value);
         }}
       ></p>
+      <ul className="cases-list">
+        {cases.map((case_, i) => {
+          return (
+            <Case
+              key={i}
+              id={i}
+              onChange={(part, value) => {
+                caseChange(i, part, value);
+              }}
+            >
+              {case_}
+            </Case>
+          );
+        })}
+      </ul>
+      <button
+        className="button"
+        onClick={() => {
+          const case_ = createCase();
+          cases.push(case_);
+
+          onChange('cases', cases);
+        }}
+      >
+        New Case
+      </button>
     </li>
   );
 };

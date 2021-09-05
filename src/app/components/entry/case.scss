@@ -1,0 +1,52 @@
+.Case {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-areas:
+    'h h h h h h h h o o o o'
+    'h h h h h h h h o o o o'
+    'h h h h h h h h o o o o'
+    'h h h h h h h h o o o o'
+    'c c c c c c c c c c c c';
+
+  // height: 100px;
+  // min-height: 150px;
+  width: 90%;
+
+  .html {
+    // font-weight: bold;
+  }
+
+  .css {
+    background-color: rgb(70, 70, 180);
+  }
+
+  .code {
+    grid-area: h;
+    display: flex;
+    align-items: center;
+    padding-top: 35px;
+    background: #282a36;
+    // background: pink;
+
+    .background {
+      height: 100%;
+      width: 100%;
+      margin: 20px;
+    }
+
+    &.hidden {
+      display: none;
+    }
+  }
+
+  .output {
+    grid-area: o;
+    background: gainsboro;
+  }
+
+  .categories {
+    grid-area: c;
+    background: #000;
+  }
+}

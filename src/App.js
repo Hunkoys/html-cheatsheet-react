@@ -7,7 +7,7 @@ import network from './app/util/network';
 
 const STATUS = {
   syncing: 'Syncing',
-  synced: 'synced',
+  synced: 'Synced',
 };
 
 const queueSave = debounce(2000, (entries, callback) => {
@@ -30,8 +30,8 @@ function App(props) {
   }, []);
 
   function entryChangedHandler(id, part, value) {
-    console.log('type');
     entries.find(({ id: itId }) => itId === id)[part] = value;
+
     setEntries(entries);
     setStatus(STATUS.syncing);
 
