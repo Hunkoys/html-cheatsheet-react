@@ -1,21 +1,64 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
+import Content from './app/components/Content';
+import createEntry from './app/data/createEntry';
+import debounce from './app/util/debounce';
 import network from './app/util/network';
 
-function newEntryClickHandler(e) {
-  network.post('/entry', { text: 'Bwisi' }).then((yo) => console.log(yo));
-}
+const STATUS = {
+  syncing: 'Syncing',
+  synced: 'synced',
+};
 
-function App() {
-  const [entries, setEntries] = useState();
+const queueSave = debounce(2000, (entries, callback) => {
+  network.put(`/entries/result`, entries).then((entries) => {
+    callback(entries);
+  });
+});
+
+function App(props) {
+  const [entries, setEntries] = useState([]);
+  const [status, setStatus] = useState('');
+
+  useEffect(() => {
+    setStatus(STATUS.syncing);
+
+    network.get('/entries').then((entries) => {
+      setEntries(entries);
+      setStatus(STATUS.synced);
+    });
+  }, []);
+
+  function entryChangedHandler(id, part, value) {
+    console.log('type');
+    entries.find(({ id: itId }) => itId === id)[part] = value;
+    setEntries(entries);
+    setStatus(STATUS.syncing);
+
+    queueSave(entries, (entries) => {
+      setEntries(entries);
+      setStatus(STATUS.synced);
+    });
+  }
+
+  function newEntryClickHandler(e) {
+    const entry = createEntry();
+    setStatus(STATUS.syncing);
+
+    network.post('/entry/result', entry).then((entries) => {
+      setEntries(entries);
+      setStatus(STATUS.synced);
+    });
+  }
 
   return (
-    <main>
+    <main className="App">
       <header>HTML Cheat Sheet</header>
-      <section id="content">
-        <ul id="entries">{entries}</ul>
-      </section>
+      <Content className="Content" onChange={entryChangedHandler}>
+        {entries}
+      </Content>
       <button onClick={newEntryClickHandler}>New Entry</button>
+      <div className="status">{status}</div>
     </main>
   );
 }

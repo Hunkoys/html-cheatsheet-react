@@ -10,9 +10,17 @@ function provideEntriesData() {
 }
 
 const queueStore = debounce(2000, () => {
-  console.log('hi');
   return writeJSON(FILENAME, data);
 });
+
+function newID() {
+  let largest = 0;
+  for (const { id } of data) {
+    if (id > largest) largest = id;
+  }
+  const id = largest + 1;
+  return id;
+}
 
 let data = provideEntriesData();
 
@@ -22,9 +30,27 @@ const entries = {
   },
 
   push(entry) {
+    const id = newID();
+    entry.id = id;
     data.push(entry);
+    queueStore();
+  },
+
+  edit(i, mod) {
+    const entry = data[i];
+    for (const part in entry) {
+      if (mod[part]) entry[part] = mod[part];
+    }
+
+    queueStore();
+  },
+
+  replace(newData) {
+    data = newData;
     console.log(data);
+
     queueStore();
   },
 };
+
 exports.entries = entries;

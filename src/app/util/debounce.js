@@ -9,4 +9,4 @@ function debounce(interval, callback) {
   };
 }
 
-module.exports = debounce;
+export default debounce;
