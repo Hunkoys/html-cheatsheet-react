@@ -1,7 +1,7 @@
 .Case {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr) 30px;
   grid-template-areas:
     'h h h h h h h h o o o o'
     'h h h h h h h h o o o o'
@@ -27,7 +27,6 @@
     align-items: center;
     padding-top: 35px;
     background: #282a36;
-    // background: pink;
 
     .background {
       height: 100%;
@@ -42,7 +41,13 @@
 
   .output {
     grid-area: o;
+    min-height: 100%;
+    width: 100%;
     background: gainsboro;
+
+    .doc {
+      border: none;
+    }
   }
 
   .categories {

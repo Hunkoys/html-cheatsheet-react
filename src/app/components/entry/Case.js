@@ -3,19 +3,21 @@ import 'codemirror/keymap/sublime';
 import 'codemirror/theme/dracula.css';
 import { useEffect, useRef, useState } from 'react/cjs/react.development';
 import './case.scss';
+import Output from './Output';
 
 const Case = ({ children, ...props }) => {
-  const { html, css, output, categories } = children;
   const { onChange = () => {} } = props;
 
   const [htmlHidden, setHtmlHidden] = useState('');
-  const [cssHidden, setCssHidden] = useState('hidden');
+  const [cssHidden, setCssHidden] = useState('');
 
-  const [liveHtml, setHtml] = useState(children.html);
+  const [html, setHtml] = useState(children.html);
+  const [css, setCss] = useState(children.css);
 
-  function createOnChangeHandler(part) {
-    return function ({ target }) {
-      const value = target.innerText;
+  function createOnChangeHandler(part, setter) {
+    return function (codemirror) {
+      const value = codemirror.getValue();
+      setter(value);
       onChange(part, value);
     };
   }
@@ -39,41 +41,39 @@ const Case = ({ children, ...props }) => {
         CSS
       </button>
 
-      <div className={`html code ${htmlHidden}`}>
-        <div className="background">
-          <Codemirror
-            width="100%"
-            value={liveHtml}
-            onChange={(e) => {
-              setHtml(e.getValue());
-              onChange('html', e.getValue());
-            }}
-            options={{
-              theme: 'dracula',
-              keyMap: 'sublime',
-              mode: 'html',
-            }}
-          />
-        </div>
-      </div>
       <div className={`css code ${cssHidden}`}>
         <div className="background">
           <Codemirror
             width="100%"
             value={css}
-            onChange={(e) => {
-              onChange('css', e.getValue());
-            }}
+            onChange={createOnChangeHandler('css', setCss)}
             options={{
               theme: 'dracula',
               keyMap: 'sublime',
               mode: 'css',
+              scrollbarStyle: 'null',
             }}
           />
         </div>
       </div>
 
-      <output className="output" dangerouslySetInnerHTML={{ __html: liveHtml }}></output>
+      <div className={`html code ${htmlHidden}`}>
+        <div className="background">
+          <Codemirror
+            width="100%"
+            value={html}
+            onChange={createOnChangeHandler('html', setHtml)}
+            options={{
+              theme: 'dracula',
+              keyMap: 'sublime',
+              mode: 'html',
+              scrollbarStyle: 'null',
+            }}
+          />
+        </div>
+      </div>
+
+      <Output html={html} css={css} />
       <ul className="category-list"></ul>
     </div>
   );

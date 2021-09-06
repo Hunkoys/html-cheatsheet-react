@@ -1,1 +1,1 @@
-[{"details":"","id":1,"title":"<html>","description":"Shit","cases":[{"html":"<b>hi Holy shit crap</b>","css":".he {\n\t\n}","output":"","categories":[]}]}]
+[{"details":"","id":1,"title":"<html>","description":"Shit","cases":[{"html":"<b>hi Holy shit crap</b>","css":"* {\n  font-family: arial;\n}\n\nb {\n  color: salmon;\n}\n","output":"","categories":[]}]}]
