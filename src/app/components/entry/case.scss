@@ -1,24 +1,23 @@
 .Case {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(4, 1fr) 30px;
+  grid-template-rows: 30px repeat(3, 1fr) 30px;
   grid-template-areas:
-    'h h h h h h h h o o o o'
+    'l l l l l l l l l l l l'
     'h h h h h h h h o o o o'
     'h h h h h h h h o o o o'
     'h h h h h h h h o o o o'
     'c c c c c c c c c c c c';
 
-  // height: 100px;
-  // min-height: 150px;
   width: 90%;
 
-  .html {
-    // font-weight: bold;
-  }
+  .lang-toggle {
+    display: flex;
+    grid-area: l;
 
-  .css {
-    background-color: rgb(70, 70, 180);
+    button {
+      width: 100px;
+    }
   }
 
   .code {
@@ -35,7 +34,9 @@
     }
 
     &.hidden {
-      display: none;
+      grid-area: none;
+      position: absolute;
+      top: -9999px;
     }
   }
 
@@ -50,8 +51,39 @@
     }
   }
 
-  .categories {
+  .category-list {
     grid-area: c;
-    background: #000;
+    display: flex;
+
+    ul {
+      display: flex;
+
+      .category-item {
+        display: flex;
+        border: 1px solid salmon;
+
+        .content {
+          min-width: 10px;
+        }
+
+        .close-btn {
+          width: 30px;
+          visibility: hidden;
+        }
+
+        &:hover {
+          .close-btn {
+            visibility: visible;
+            background: rgb(204, 53, 53);
+            color: white;
+            border: none;
+          }
+        }
+      }
+    }
+
+    .new-category-button {
+      width: 30px;
+    }
   }
 }

@@ -10,7 +10,7 @@ const STATUS = {
   synced: 'Synced',
 };
 
-const queueSave = debounce(2000, (entries, callback) => {
+const queueSave = debounce(1000, (entries, callback) => {
   network.put(`/entries/result`, entries).then((entries) => {
     callback(entries);
   });

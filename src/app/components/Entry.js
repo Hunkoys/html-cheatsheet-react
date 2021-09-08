@@ -1,11 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import createCase from '../data/createCase';
-import debounce from '../util/debounce';
 import Case from './entry/Case';
-
-const debouncedOnChange = debounce(300, (callback) => {
-  callback();
-});
 
 const Entry = ({ children, ...props }) => {
   const titleEl = useRef(null);

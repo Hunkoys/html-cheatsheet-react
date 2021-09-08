@@ -17,6 +17,7 @@
   "scripts": {
     "start": "react-scripts start",
     "serve": "cd backend && nodemon server.js --ignore *.json",
+    "get-server-pid": "netstat -nlp | grep :50200",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

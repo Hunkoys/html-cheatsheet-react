@@ -1,1 +1,19 @@
-[{"details":"","id":1,"title":"<html>","description":"Shit","cases":[{"html":"<b>hi Holy shit crap</b>","css":"* {\n  font-family: arial;\n}\n\nb {\n  color: salmon;\n}\n","output":"","categories":[]}]}]
+{
+  "1": {
+    "title": "<html>",
+    "description": "This is it",
+    "cases": {
+      "1": {
+        "html": "<b>Hi there</b>",
+        "css": "b {\n\tcolor: salmon;\n}",
+        "categories": {
+          "1": "Flow Content",
+          "2": "Sectioning Content"
+        }
+      }
+    },
+    "details": {
+      "1": "shit bro"
+    }
+  }
+}

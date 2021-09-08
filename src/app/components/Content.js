@@ -1,4 +1,3 @@
-import { useState } from 'react/cjs/react.development';
 import Entry from './Entry';
 
 const Content = ({ children, ...props }) => {
