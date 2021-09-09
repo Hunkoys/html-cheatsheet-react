@@ -1,66 +1,88 @@
 import { useEffect, useState } from 'react';
-import './App.css';
-import Content from './app/components/Content';
-import createEntry from './app/data/createEntry';
+import Entries from './app/comps/Entries';
+import { createEntry } from './app/data/creator';
+import getEntries from './app/data/entries';
 import debounce from './app/util/debounce';
 import network from './app/util/network';
+import './App.scss';
 
 const STATUS = {
   syncing: 'Syncing',
   synced: 'Synced',
+  failed: '<!> Sync Failed',
 };
 
-const queueSave = debounce(1000, (entries, callback) => {
-  network.put(`/entries/result`, entries).then((entries) => {
-    callback(entries);
+const saveDebounce = debounce(1000, (entries, callback) => {
+  network.put(`/entries`, entries).then((result) => {
+    callback(result);
   });
 });
 
-function App(props) {
-  const [entries, setEntries] = useState([]);
-  const [status, setStatus] = useState('');
+const App2 = ({ children, className, ...props }) => {
+  className = className ? ' ' + className : '';
+
+  const [entries, setEntries] = useState({});
+  const [status, setStatus] = useState(STATUS.syncing);
 
   useEffect(() => {
     setStatus(STATUS.syncing);
 
-    network.get('/entries').then((entries) => {
+    (async () => {
+      const entries = await getEntries();
+
       setEntries(entries);
       setStatus(STATUS.synced);
-    });
+    })();
   }, []);
 
-  function entryChangedHandler(id, part, value) {
-    entries.find(({ id: itId }) => itId === id)[part] = value;
+  function updateEntries() {
+    setEntries({ ...entries });
+  }
 
-    setEntries(entries);
+  function queueSave() {
     setStatus(STATUS.syncing);
 
-    queueSave(entries, (entries) => {
-      setEntries(entries);
-      setStatus(STATUS.synced);
+    saveDebounce(entries, (result) => {
+      if (result === true) setStatus(STATUS.synced);
+      else setStatus(STATUS.failed);
     });
   }
 
-  function newEntryClickHandler(e) {
-    const entry = createEntry();
-    setStatus(STATUS.syncing);
+  function entryOnChangeHandler(id, part, value) {
+    entries[id][part] = value;
+    updateEntries();
 
-    network.post('/entry/result', entry).then((entries) => {
-      setEntries(entries);
-      setStatus(STATUS.synced);
-    });
+    queueSave();
+  }
+
+  function onDelete(id) {
+    delete entries[id];
+    updateEntries();
+
+    queueSave();
+  }
+
+  function newEntryClickHandler() {
+    entries.push(createEntry());
+    updateEntries();
+
+    queueSave();
   }
 
   return (
-    <main className="App">
-      <header>HTML Cheat Sheet</header>
-      <Content className="Content" onChange={entryChangedHandler}>
+    <main className={'App' + className}>
+      <header className="header">
+        <h1 className="title">HTML Cheat Sheet</h1>
+      </header>
+      <Entries onChange={entryOnChangeHandler} onDelete={onDelete}>
         {entries}
-      </Content>
-      <button onClick={newEntryClickHandler}>New Entry</button>
+      </Entries>
+      <button className="button new-entry-btn" onClick={newEntryClickHandler}>
+        New Entry
+      </button>
       <div className="status">{status}</div>
     </main>
   );
-}
+};
 
-export default App;
+export default App2;

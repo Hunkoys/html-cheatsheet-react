@@ -15,15 +15,6 @@ const queueStore = debounce(2000, () => {
   return writeJSON(FILENAME, data);
 });
 
-// function newID() {
-//   let largest = 0;
-//   for (const { id } of data) {
-//     if (id > largest) largest = id;
-//   }
-//   const id = largest + 1;
-//   return id;
-// }
-
 let data = provideEntriesData();
 
 const entries = {
@@ -31,27 +22,24 @@ const entries = {
     return data;
   },
 
-  // push(entry) {
-  //   const id = newID();
-  //   entry.id = id;
-  //   data.push(entry);
-  //   queueStore();
-  // },
+  push(entry) {
+    const { id, ...value } = entry;
+    data[id] = value;
 
-  // edit(i, mod) {
-  //   const entry = data[i];
-  //   for (const part in entry) {
-  //     if (mod[part]) entry[part] = mod[part];
-  //   }
+    return queueStore();
+  },
 
-  //   queueStore();
-  // },
+  edit(id, value) {
+    data[id] = value;
+
+    return queueStore();
+  },
 
   replace(newData) {
     data = newData;
     console.log(data);
 
-    queueStore();
+    return queueStore();
   },
 };
 

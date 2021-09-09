@@ -23,11 +23,11 @@ function readJSON(name) {
 }
 
 function writeJSON(name, data) {
-  const string = JSON.stringify(data);
+  const value = JSON.stringify(data);
   return new Promise((resolve, reject) => {
-    fs.writeFile(path.join(dataPath, `${name}.json`), string, (err) => {
+    fs.writeFile(path.join(dataPath, `${name}.json`), value, (err) => {
       if (err) reject(err);
-      resolve(string);
+      resolve(value);
     });
   });
 }

@@ -1,0 +1,26 @@
+.Editable {
+  --padding: 0.2em;
+
+  position: relative;
+  padding: var(--padding);
+
+  .placeholder {
+    position: absolute;
+    top: var(--padding);
+    left: var(--padding);
+    visibility: hidden;
+    pointer-events: none;
+    opacity: 0.4;
+  }
+
+  &.empty {
+    .placeholder {
+      visibility: visible;
+    }
+  }
+
+  .value:focus {
+    border: none;
+    outline: none;
+  }
+}

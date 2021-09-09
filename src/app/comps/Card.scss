@@ -1,0 +1,16 @@
+.Card {
+  position: relative;
+
+  .close-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 30px;
+    width: 30px;
+    margin: 10px;
+    border-radius: 50%;
+    background: rgb(238, 159, 150);
+    color: rgb(116, 19, 19);
+    font-size: 1.2em;
+  }
+}

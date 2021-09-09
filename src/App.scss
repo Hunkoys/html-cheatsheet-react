@@ -1,0 +1,38 @@
+.App {
+  .header {
+    .title {
+      color: salmon;
+    }
+  }
+
+  .Entries {
+    .CardList {
+      li {
+        .Card {
+          .content {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: repeat(2, auto) 20px repeat(4, 1fr) 20px;
+            grid-template-areas:
+              '1 1 1 1 1 1 1 1'
+              '2 2 2 2 2 2 2 2'
+              '3 3 3 3 3 3 4 4'
+              '3 3 3 3 3 3 4 4'
+              '3 3 3 3 3 3 4 4'
+              '3 3 3 3 3 3 4 4'
+              '5 5 5 5 5 5 5 5';
+
+            width: 100%;
+            height: 200px;
+            background: rgb(50, 171, 192);
+
+            .title {
+              grid-area: 1;
+              color: rgb(250, 250, 250);
+            }
+          }
+        }
+      }
+    }
+  }
+}
