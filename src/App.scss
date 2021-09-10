@@ -1,18 +1,31 @@
 :root {
   --App-side-margin: 40px;
+  --App-color-main: rgb(50, 171, 192);
 }
 
 .App {
+  padding-left: var(--App-side-margin);
+  padding-right: var(--App-side-margin);
+
   .header {
     .title {
-      padding-left: var(--App-side-margin);
       color: salmon;
     }
   }
 
   .Entries {
-    .CardList {
-      .Card {
+    & > .CardList {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      & > .Card {
+        // max-width: 1300px;
+        width: 100%;
+        margin-bottom: 40px;
+        border-radius: 20px;
+        background: var(--App-color-main);
+
         .Entry {
           display: grid;
           grid-template-columns: repeat(8, 1fr);
@@ -23,14 +36,21 @@
             'c c c c c c c c'
             'n n n n n n n n';
           width: 100%;
-          background: rgb(50, 171, 192);
-          padding-left: var(--App-side-margin);
-          padding-right: var(--App-side-margin);
+          padding: 5px 20px;
 
           .title {
             grid-area: t;
             color: rgb(250, 250, 250);
-            font-size: 2em;
+            font-size: 2.5em;
+            width: 100%;
+            font-weight: bold;
+
+            &.sticky {
+              position: fixed;
+              top: 0;
+              background: var(--App-color-main);
+              z-index: 100;
+            }
           }
 
           .description {

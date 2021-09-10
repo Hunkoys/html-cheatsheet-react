@@ -16,17 +16,17 @@
     width: 30px;
     margin: 10px;
     border-radius: 50%;
-    color: rgb(116, 19, 19);
+    color: #741313;
     font-size: 1.2em;
-    z-index: 9999;
+    z-index: 1;
   }
 
   .close-btn:hover {
-    background: rgb(238, 159, 150);
+    background: #ee9f96;
     opacity: 1;
 
-    & ~ .content {
-      box-shadow: 0 0 2px 2px lightblue;
+    & ~ .content > * {
+      box-shadow: 0 0 2px 2px #f17d70 inset;
     }
   }
 }

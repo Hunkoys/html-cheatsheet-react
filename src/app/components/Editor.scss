@@ -11,10 +11,15 @@
     .CodeMirror {
       min-height: 3em;
       font-size: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: center;
 
       .CodeMirror-scroll {
-        padding-top: 25px;
-        padding-bottom: 55px;
+        padding: 62px 0;
+        margin-top: -20px;
+        margin-bottom: -20px;
       }
     }
   }

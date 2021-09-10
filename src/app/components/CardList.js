@@ -11,15 +11,13 @@ const CardList = ({ children = [], className, ...props }) => {
   }
 
   return (
-    <ol className={'CardList' + className}>
+    <div className={'CardList' + className}>
       {children.map(([id, element]) => (
-        <li key={id}>
-          <Card key={id} onDelete={createOnDeleteHandler(id)}>
-            {element}
-          </Card>
-        </li>
+        <Card key={id} onDelete={createOnDeleteHandler(id)}>
+          {element}
+        </Card>
       ))}
-    </ol>
+    </div>
   );
 };
 

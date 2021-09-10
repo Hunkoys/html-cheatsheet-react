@@ -6,8 +6,8 @@
   display: grid;
   grid-template-columns: 3fr 1fr;
   grid-template-rows: 30px auto auto;
-  column-gap: 5px;
-  margin: 5px;
+  column-gap: 10px;
+  margin: 20px 0;
   grid-template-areas:
     't t'
     'e o'

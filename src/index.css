@@ -1,3 +1,10 @@
+:root {
+  --color-primary: #df711b;
+  --color-secondary: #ffb740;
+  --color-dominant: #64c9cf;
+  --color-auxiliary: #fde49c;
+}
+
 @font-face {
   font-family: 'JetBrains Mono';
   src: url('./fonts/JetBrainsMono-Regular.woff2') format('woff2');
