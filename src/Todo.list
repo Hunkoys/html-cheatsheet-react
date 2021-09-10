@@ -1,0 +1,2 @@
+- Change Handlers to say "handleSomeTask" instead of "onSomeTaskHandler"
+  - Only use above if you can't turn the function into something like "changeList"
