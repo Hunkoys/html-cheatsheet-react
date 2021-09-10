@@ -3,14 +3,6 @@ import 'codemirror/keymap/sublime';
 import 'codemirror/theme/dracula.css';
 import './Editor.scss';
 
-let i = 50;
-
-function pop() {
-  if (i--) return false;
-  else i = 50;
-  return true;
-}
-
 const Editor = ({ children, className, ...props }) => {
   className = className ? ' ' + className : '';
 

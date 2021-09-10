@@ -17,6 +17,7 @@ const Case = ({ children = {}, className, ...props }) => {
 
   const [html, setHtml] = useState(children.html || '');
   const [css, setCss] = useState(children.css || '');
+
   const [visible, setVisible] = useState(defaultVisible);
 
   function onToggleHandler(value) {
@@ -34,7 +35,6 @@ const Case = ({ children = {}, className, ...props }) => {
     return !visible || visible === editor ? '' : HIDDEN_CLASS;
   }
 
-  console.log(evalHidden ? 't' : 'f');
   return (
     <div className={'Case' + className}>
       <Toggle
