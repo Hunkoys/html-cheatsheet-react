@@ -1,28 +1,15 @@
-import { useEffect, useRef } from 'react';
-import CloseBtn from './CloseBtn';
+import './Card.scss';
 
-const Card = ({ children, ...props }) => {
-  const el = useRef(null);
-
-  useEffect(() => {
-    el.current.innerText = children;
-  }, []);
-
-  const { onClose = () => {}, onChange = () => {}, className = '' } = props;
+const Card = ({ children, className, ...props }) => {
+  className = className ? ' ' + className : '';
+  const { onDelete = () => {} } = props;
 
   return (
-    <div className={className}>
-      <div
-        ref={el}
-        className="content"
-        contentEditable
-        suppressContentEditableWarning
-        onInput={({ target }) => {
-          const value = target.innerText;
-          onChange(value);
-        }}
-      ></div>
-      <CloseBtn onClick={onClose} />
+    <div className={'Card' + className}>
+      <div className="content">{children}</div>
+      <button className="close-btn" onClick={onDelete}>
+        x
+      </button>
     </div>
   );
 };

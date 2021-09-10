@@ -1,80 +1,50 @@
-import { useEffect, useRef, useState } from 'react';
-import createCase from '../data/createCase';
-import Case from './entry/Case';
+import CardList from './CardList';
+import { createCase } from '../data/creator';
+import Case from './Case';
+import Editable from './Editable';
 
-const Entry = ({ children, ...props }) => {
-  const titleEl = useRef(null);
-  const descriptionEl = useRef(null);
+const Entry = ({ children, className, ...props }) => {
+  className = className ? ' ' + className : '';
 
-  const { title, description } = children;
-  const [cases, setCases] = useState([]);
+  const { value, onChange = () => {} } = props;
+  const { title, description, cases = [], details } = value;
 
-  useEffect(() => {
-    titleEl.current.innerText = title;
-    descriptionEl.current.innerText = description;
-    setCases(children.cases);
-  }, []);
-
-  const { onChange = () => {} } = props;
-
-  function caseChange(i, part, value) {
-    cases[i][part] = value;
+  function onCaseChange(caseId, part, value) {
+    cases[caseId][part] = value;
     onChange('cases', cases);
   }
 
-  // console.log(cases);
+  function onCaseDeleteHandler(id) {
+    delete cases[id];
+    onChange('cases', cases);
+  }
+
+  function pushNewCase() {
+    cases.push(createCase());
+    onChange('cases', cases);
+  }
+
+  const caseList = cases.map((_case, id) => {
+    return [id, <Case onChange={(...p) => onCaseChange(id, ...p)}>{_case}</Case>];
+  });
 
   return (
-    <li className="item">
-      <h2
-        ref={titleEl}
-        className="title"
-        contentEditable
-        suppressContentEditableWarning
-        onInput={({ target }) => {
-          const value = target.innerText;
-
-          onChange('title', value);
-        }}
-      ></h2>
-      <p
-        ref={descriptionEl}
+    <div className="Entry">
+      <Editable className="title" value={title} onChange={(...p) => onChange('title', ...p)} placeholder="Title" />
+      <Editable
         className="description"
-        contentEditable
-        suppressContentEditableWarning
-        onInput={({ target }) => {
-          const value = target.innerText;
+        value={description}
+        onChange={(...p) => onChange('description', ...p)}
+        placeholder="Description"
+      />
 
-          onChange('description', value);
-        }}
-      ></p>
-      <ul className="cases-list">
-        {cases.map((case_, i) => {
-          return (
-            <Case
-              key={i}
-              id={i}
-              onChange={(part, value) => {
-                caseChange(i, part, value);
-              }}
-            >
-              {case_}
-            </Case>
-          );
-        })}
-      </ul>
-      <button
-        className="button"
-        onClick={() => {
-          const case_ = createCase();
-          cases.push(case_);
-
-          onChange('cases', cases);
-        }}
-      >
+      <CardList className="case-list" onDelete={onCaseDeleteHandler}>
+        {caseList}
+      </CardList>
+      <button className="button new-case-button" onClick={pushNewCase}>
         New Case
       </button>
-    </li>
+    </div>
   );
 };
 

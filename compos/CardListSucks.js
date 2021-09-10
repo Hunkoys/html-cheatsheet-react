@@ -1,4 +1,4 @@
-import Card from './Card';
+import Card from '../src/app/components/Card';
 
 const CardList = ({ children, className, ...props }) => {
   className = className ? ' ' + className : '';

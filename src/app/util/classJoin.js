@@ -1,5 +1,5 @@
 function cj(...classNames) {
-  const nonEmpty = classNames.filter((value) => value.trim() !== '');
+  const nonEmpty = classNames.filter((value) => value && value.trim() !== '');
   return nonEmpty.join(' ');
 }
 

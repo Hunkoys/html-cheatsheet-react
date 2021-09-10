@@ -29,3 +29,7 @@ code {
 .code .CodeMirror {
   font-family: 'JetBrains Mono';
 }
+
+button {
+  cursor: pointer;
+}

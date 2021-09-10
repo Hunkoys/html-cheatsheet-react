@@ -1,0 +1,38 @@
+.Case {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 30px auto 20px;
+  grid-template-areas:
+    't t'
+    'e o'
+    'c c';
+
+  .Toggle {
+    display: flex;
+    grid-area: t;
+    margin-left: 10px;
+
+    .button {
+      width: 100px;
+      height: 100%;
+      margin-left: 2px;
+      border: none;
+      border-radius: 5px 5px 0 0;
+
+      &.depressed {
+        background: #282a36;
+        color: white;
+      }
+    }
+  }
+
+  .Editor {
+    grid-area: e;
+
+    &.hidden {
+      grid-area: none;
+      position: absolute;
+      top: -9999px;
+    }
+  }
+}

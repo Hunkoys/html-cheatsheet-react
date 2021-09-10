@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Entries from './app/comps/Entries';
+import Entries from './app/components/Entries';
 import { createEntry } from './app/data/creator';
 import getEntries from './app/data/entries';
 import debounce from './app/util/debounce';
@@ -21,7 +21,7 @@ const saveDebounce = debounce(1000, (entries, callback) => {
 const App2 = ({ children, className, ...props }) => {
   className = className ? ' ' + className : '';
 
-  const [entries, setEntries] = useState({});
+  const [entries, setEntries] = useState([]);
   const [status, setStatus] = useState(STATUS.syncing);
 
   useEffect(() => {
