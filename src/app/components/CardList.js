@@ -1,4 +1,5 @@
 import Card from './Card';
+import './CardList.scss';
 
 const CardList = ({ children = [], className, ...props }) => {
   className = className ? ' ' + className : '';

@@ -1,7 +1,7 @@
 .Case {
   display: grid;
   grid-template-columns: 3fr 1fr;
-  grid-template-rows: 30px auto 20px;
+  grid-template-rows: 30px auto auto;
   grid-template-areas:
     't t'
     'e o'
@@ -33,6 +33,41 @@
       grid-area: none;
       position: absolute;
       top: -9999px;
+    }
+  }
+
+  .categories {
+    display: flex;
+    align-items: center;
+    grid-area: c;
+
+    .CardList {
+      display: flex;
+
+      .Card {
+        display: flex;
+        align-items: center;
+
+        .category.Editable {
+          min-width: 60px;
+        }
+
+        .close-btn {
+          position: static;
+          margin: 5px;
+          height: 20px;
+          width: 20px;
+          border-radius: 0;
+          font-size: 0.8em;
+        }
+      }
+    }
+
+    .new-category-btn {
+      height: 30px;
+      width: 30px;
+      margin: 5px;
+      font-size: 1.2em;
     }
   }
 }

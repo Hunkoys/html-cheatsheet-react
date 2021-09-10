@@ -3,14 +3,23 @@
 
   .close-btn {
     position: absolute;
+    opacity: 0.3;
     right: 0;
     top: 0;
     height: 30px;
     width: 30px;
     margin: 10px;
     border-radius: 50%;
-    background: rgb(238, 159, 150);
     color: rgb(116, 19, 19);
     font-size: 1.2em;
+  }
+
+  .close-btn:hover {
+    background: rgb(238, 159, 150);
+    opacity: 1;
+  }
+
+  &:hover {
+    box-shadow: 0 0 2px 2px lightblue;
   }
 }

@@ -41,7 +41,7 @@ const Entry = ({ children, className, ...props }) => {
       <CardList className="case-list" onDelete={onCaseDeleteHandler}>
         {caseList}
       </CardList>
-      <button className="button new-case-button" onClick={pushNewCase}>
+      <button className="button new-case-btn" onClick={pushNewCase}>
         New Case
       </button>
     </div>
