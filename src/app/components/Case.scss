@@ -1,7 +1,13 @@
+:root {
+  --Case-puny-brad: 8px;
+}
+
 .Case {
   display: grid;
   grid-template-columns: 3fr 1fr;
   grid-template-rows: 30px auto auto;
+  column-gap: 5px;
+  margin: 5px;
   grid-template-areas:
     't t'
     'e o'
@@ -17,7 +23,7 @@
       height: 100%;
       margin-left: 2px;
       border: none;
-      border-radius: 5px 5px 0 0;
+      border-radius: var(--Case-puny-brad) var(--Case-puny-brad) 0 0;
 
       &.depressed {
         background: #282a36;
@@ -28,12 +34,17 @@
 
   .Editor {
     grid-area: e;
+    border-radius: var(--Case-puny-brad);
 
     &.hidden {
       grid-area: none;
       position: absolute;
       top: -9999px;
     }
+  }
+
+  .Output {
+    border-radius: var(--Case-puny-brad);
   }
 
   .categories {

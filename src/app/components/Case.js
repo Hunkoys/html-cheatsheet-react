@@ -3,6 +3,7 @@ import CardList from './CardList';
 import './Case.scss';
 import Editable from './Editable';
 import Editor from './Editor';
+import Output from './Output';
 import Toggle from './Toggle';
 
 const HIDDEN_CLASS = 'hidden';
@@ -15,7 +16,7 @@ const Case = ({ children = {}, className, ...props }) => {
   className = className ? ' ' + className : '';
 
   const { onChange = () => {} } = props;
-  const { categories = [], _html = '', _css = '' } = children;
+  const { categories = [], html: _html = '', css: _css = '' } = children;
   const defaultVisible = editors.html;
 
   const [html, setHtml] = useState(_html);
@@ -80,6 +81,8 @@ const Case = ({ children = {}, className, ...props }) => {
         value={css}
         onChange={createOnChangeHandler('css', setCss)}
       />
+
+      <Output html={html} css={css} />
 
       <div className="categories">
         <CardList onDelete={(id) => handleCardDelete(id)}>{categoryList}</CardList>

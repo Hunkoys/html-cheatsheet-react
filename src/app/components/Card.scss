@@ -1,5 +1,11 @@
 .Card {
+  display: flex;
+  flex-direction: row-reverse;
   position: relative;
+
+  .content {
+    width: 100%;
+  }
 
   .close-btn {
     position: absolute;
@@ -12,14 +18,15 @@
     border-radius: 50%;
     color: rgb(116, 19, 19);
     font-size: 1.2em;
+    z-index: 9999;
   }
 
   .close-btn:hover {
     background: rgb(238, 159, 150);
     opacity: 1;
-  }
 
-  &:hover {
-    box-shadow: 0 0 2px 2px lightblue;
+    & ~ .content {
+      box-shadow: 0 0 2px 2px lightblue;
+    }
   }
 }

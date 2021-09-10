@@ -9,7 +9,7 @@ const Entry = ({ children, className, ...props }) => {
   const { value, onChange = () => {} } = props;
   const { title, description, cases = [], details } = value;
 
-  function onCaseChange(caseId, part, value) {
+  function updateCases(caseId, part, value) {
     cases[caseId][part] = value;
     onChange('cases', cases);
   }
@@ -25,7 +25,7 @@ const Entry = ({ children, className, ...props }) => {
   }
 
   const caseList = cases.map((_case, id) => {
-    return [id, <Case onChange={(...p) => onCaseChange(id, ...p)}>{_case}</Case>];
+    return [id, <Case onChange={(part, value) => updateCases(id, part, value)}>{_case}</Case>];
   });
 
   return (

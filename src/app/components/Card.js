@@ -6,10 +6,10 @@ const Card = ({ children, className, ...props }) => {
 
   return (
     <div className={'Card' + className}>
-      <div className="content">{children}</div>
-      <button className="close-btn" onClick={onDelete}>
+      <button className="close-btn" onClick={onDelete} tabIndex="-1">
         x
       </button>
+      <div className="content">{children}</div>
     </div>
   );
 };
