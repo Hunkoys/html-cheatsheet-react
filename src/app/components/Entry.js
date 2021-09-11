@@ -10,12 +10,13 @@ const Entry = ({ children, className, ...props }) => {
   const { title, description, cases = [], details } = value;
 
   function updateCases(caseId, part, value) {
-    cases[caseId][part] = value;
+    console.log(cases);
+    cases.get(caseId)[part] = value;
     onChange('cases', cases);
   }
 
   function onCaseDeleteHandler(id) {
-    delete cases[id];
+    cases.delete(id);
     onChange('cases', cases);
   }
 

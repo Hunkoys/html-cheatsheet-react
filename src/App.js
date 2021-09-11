@@ -24,6 +24,8 @@ const App2 = ({ children, className, ...props }) => {
   const [entries, setEntries] = useState([]);
   const [status, setStatus] = useState(STATUS.syncing);
 
+  // console.log(entries);
+
   useEffect(() => {
     setStatus(STATUS.syncing);
 
@@ -49,14 +51,14 @@ const App2 = ({ children, className, ...props }) => {
   }
 
   function entryOnChangeHandler(id, part, value) {
-    entries[id][part] = value;
+    entries.get(id)[part] = value;
     updateEntries();
 
     queueSave();
   }
 
   function onDelete(id) {
-    delete entries[id];
+    entries.delete(id);
     updateEntries();
 
     queueSave();

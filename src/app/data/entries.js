@@ -26,6 +26,7 @@ function Details(collection) {
 }
 
 function Entries(collection) {
+  console.log({ ...collection });
   const entries = Collection(collection);
 
   entries.forEach((entry) => {

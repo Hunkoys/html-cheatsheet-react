@@ -1,6 +1,6 @@
 function generateId(collection) {
   let highest = 0;
-  collection.forEach((v, id) => {
+  collection.order.forEach(({ id }) => {
     id = Number(id);
     if (id > highest) highest = id;
   });
@@ -10,24 +10,28 @@ function generateId(collection) {
 }
 
 function Collection(collectionData = {}) {
-  let collection = {
+  const collection = {
     push,
     delete: del,
     forEach,
     find,
     map,
+    get,
+    set,
+    order: collectionData.order || [],
   };
-
-  collection = {
-    ...collection,
-    ...collectionData,
-  };
-
-  // Reason for this way of defining collection:
-  //   IDE Hinting for the statically defined properties.
 
   return collection;
 }
+
+const tw = Collection();
+
+tw.push('hallo');
+tw.push('iu');
+tw.push('jackson');
+tw.push('bts');
+
+// tw.order; //?
 
 function del(id) {
   id = Number(id);
@@ -36,20 +40,23 @@ function del(id) {
     return;
   }
 
-  delete this[id];
+  const index = this.order.findIndex(({ id: itemId }) => Number(itemId) === Number(id));
+  const match = index < 0 ? false : true;
+
+  if (match) this.order.splice(index, 1);
 }
 
 function push(value) {
   const id = generateId(this);
-  this[id] = value;
+  this.order.push({ id, value });
 }
 
 function find(callback) {
-  const { push, delete: del, forEach, find, map, ...list } = this;
+  const { order } = this;
 
-  for (const id in list) {
-    const result = callback(list[id], id);
-    if (result) break;
+  for (const item of order) {
+    const result = callback(item.value, item.id);
+    if (result) return item;
   }
 }
 
@@ -66,6 +73,20 @@ function map(callback) {
   });
 
   return array;
+}
+
+function get(id) {
+  id = Number(id);
+  const match = this.find((value, itemId) => Number(itemId) === id);
+
+  if (match) return match.value;
+}
+
+function set(id, value) {
+  id = Number(id);
+  const match = this.find((value, itemId) => Number(itemId) === id);
+
+  if (match) match.value = value;
 }
 
 export default Collection;

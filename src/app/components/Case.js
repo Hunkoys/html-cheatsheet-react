@@ -36,7 +36,7 @@ const Case = ({ children = {}, className, ...props }) => {
 
   function createCategoryChangeHandler(id) {
     return function onCategoryChangeHandler(value) {
-      categories[id] = value;
+      categories.set(id, value);
       onChange('categories', categories);
     };
   }
@@ -47,7 +47,7 @@ const Case = ({ children = {}, className, ...props }) => {
   ]);
 
   function handleCardDelete(id) {
-    delete categories[id];
+    categories.delete(id);
     onChange('categories', categories);
   }
 
