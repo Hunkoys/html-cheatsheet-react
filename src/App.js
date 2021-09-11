@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Entries from './app/components/Entries';
 import { createEntry } from './app/data/creator';
-import getEntries from './app/data/entries';
+import { getEntries, saveEntries } from './app/data/entries';
 import debounce from './app/util/debounce';
 import network from './app/util/network';
 import './App.scss';
@@ -13,7 +13,7 @@ const STATUS = {
 };
 
 const saveDebounce = debounce(1000, (entries, callback) => {
-  network.put(`/entries`, entries).then((result) => {
+  saveEntries(entries).then((result) => {
     callback(result);
   });
 });
@@ -23,8 +23,6 @@ const App2 = ({ children, className, ...props }) => {
 
   const [entries, setEntries] = useState([]);
   const [status, setStatus] = useState(STATUS.syncing);
-
-  // console.log(entries);
 
   useEffect(() => {
     setStatus(STATUS.syncing);

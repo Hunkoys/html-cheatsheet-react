@@ -26,7 +26,6 @@ function Details(collection) {
 }
 
 function Entries(collection) {
-  console.log({ ...collection });
   const entries = Collection(collection);
 
   entries.forEach((entry) => {
@@ -48,5 +47,8 @@ function getEntries() {
   });
 }
 
-export default getEntries;
-export { Entries, Cases, Categories, Details };
+function saveEntries(entries) {
+  return network.put(`/entries`, entries);
+}
+
+export { getEntries, saveEntries, Entries, Cases, Categories, Details };

@@ -10,7 +10,6 @@ const Entry = ({ children, className, ...props }) => {
   const { title, description, cases = [], details } = value;
 
   function updateCases(caseId, part, value) {
-    console.log(cases);
     cases.get(caseId)[part] = value;
     onChange('cases', cases);
   }

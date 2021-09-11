@@ -9,5 +9,6 @@
       - if next() is called again, it terminates traversal.
   - Give titles anchor points
     - That's why it's a good idea to leave title scroll sticking to js
-  - Implement order in Collection
-  - Move SaveEntries to entries
++ Implement order in Collection
+- Move SaveEntries to entries
+- Turn Collections to class
