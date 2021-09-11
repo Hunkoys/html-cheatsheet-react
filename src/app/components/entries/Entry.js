@@ -1,7 +1,7 @@
-import CardList from './CardList';
-import { createCase } from '../data/creator';
-import Case from './Case';
-import Editable from './Editable';
+import { createCase } from '../../data/creator';
+import Case from '../case/Case';
+import CardList from '../foundation/block/CardList';
+import Editable from '../foundation/editable/Editable';
 
 const Entry = ({ children, className, ...props }) => {
   className = className ? ' ' + className : '';

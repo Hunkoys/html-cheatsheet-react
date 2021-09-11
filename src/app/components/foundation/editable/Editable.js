@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
-import { cj } from '../util/classJoin';
+import { cj } from '../../../util/classJoin';
 import './Editable.scss';
 
 const Editable = ({ children, className, ...props }) => {

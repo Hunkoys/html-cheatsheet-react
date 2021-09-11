@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { cj } from '../util/classJoin';
+import { cj } from '../../../util/classJoin';
 
 const DEPRESSED_CLASS = 'depressed';
 

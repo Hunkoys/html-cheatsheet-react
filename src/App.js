@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Entries from './app/components/Entries';
+import Entries from './app/components/entries/Entries';
 import { createEntry } from './app/data/creator';
 import { getEntries, saveEntries } from './app/data/entries';
 import debounce from './app/util/debounce';

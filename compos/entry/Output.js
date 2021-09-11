@@ -1,4 +1,4 @@
-import { useRef } from 'react/cjs/react.development';
+import { useRef } from 'react';
 
 const Output = ({ children, ...props }) => {
   const iframeRef = useRef();

@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import CardList from './CardList';
 import './Case.scss';
-import Editable from './Editable';
-import Editor from './Editor';
+import Editable from '../foundation/editable/Editable';
 import Output from './Output';
-import Toggle from './Toggle';
+import Toggle from '../foundation/button/Toggle';
+import Editor from '../foundation/editable/Editor';
+import CardList from '../foundation/block/CardList';
 
 const HIDDEN_CLASS = 'hidden';
 const editors = {

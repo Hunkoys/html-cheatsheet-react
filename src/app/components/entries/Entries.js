@@ -1,6 +1,6 @@
-import CardList from './CardList';
 import Entry from './Entry';
 import './Entries.scss';
+import CardList from '../foundation/block/CardList';
 
 const Entries = ({ children = [], className, ...props }) => {
   className = className ? ' ' + className : '';
