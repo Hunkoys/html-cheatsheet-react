@@ -9,6 +9,18 @@ function generateId(collection) {
   return availableId;
 }
 
+function proximOf(id, offset) {
+  const { order } = this;
+  const subjectIndex = order.findIndex(({ id: itemId }) => {
+    if (Number(itemId) === Number(id)) return true;
+  });
+
+  const match = subjectIndex < 0 ? false : true;
+  const index = match ? subjectIndex + offset : -1;
+
+  return order[index];
+}
+
 function Collection(collectionData = {}) {
   const collection = {
     push,
@@ -19,6 +31,14 @@ function Collection(collectionData = {}) {
     filter,
     get,
     set,
+    nextOf(id) {
+      return proximOf.call(this, id, 1);
+    },
+    previousOf(id) {
+      return proximOf.call(this, id, -1);
+    },
+    nextIdOf(id) {},
+    previousIdOf(id) {},
     log,
     order: collectionData.order ? [...collectionData.order] : [],
   };
@@ -33,7 +53,13 @@ tw.push('iu');
 tw.push('jackson');
 tw.push('bts');
 
-// tw.order; //?
+tw.delete(3);
+
+tw.log(); //?
+
+tw.nextOf(2); //?
+
+tw.previousOf(4); //?
 
 function del(id) {
   id = Number(id);
@@ -101,7 +127,7 @@ function set(id, value) {
 }
 
 function log() {
-  const array = [];
+  const array = {};
   this.forEach((value, id) => {
     array[id] = value;
   });
