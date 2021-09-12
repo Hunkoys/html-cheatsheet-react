@@ -14,7 +14,7 @@ const Entries = ({ children = [], className, ...props }) => {
   }
 
   const entryList = children.map((entry, id) => {
-    return <Entry value={entry} onChange={createOnChangeHandler(id)} />;
+    return <Entry id={`${id}`} value={entry} onChange={createOnChangeHandler(id)} />;
   });
 
   return (

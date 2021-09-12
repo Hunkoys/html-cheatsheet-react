@@ -3,7 +3,7 @@ import Case from '../case/Case';
 import CardList from '../foundation/block/CardList';
 import Editable from '../foundation/editable/Editable';
 
-const Entry = ({ children, className, ...props }) => {
+const Entry = ({ children, id, className, ...props }) => {
   className = className ? ' ' + className : '';
 
   const { value, onChange = () => {} } = props;
@@ -29,7 +29,7 @@ const Entry = ({ children, className, ...props }) => {
   });
 
   return (
-    <div className="Entry">
+    <div id={id} className="Entry">
       <Editable className="title" value={title} onChange={(...p) => onChange('title', ...p)} placeholder="Title" />
       <Editable
         className="description"
