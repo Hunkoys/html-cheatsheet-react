@@ -20,6 +20,8 @@ const SELECTED = 'selected';
 const Select = ({ children = [], className, ...props }) => {
   className = className ? ' ' + className : '';
 
+  const list = children.order || [];
+
   const { selected: selectedInitial, onSelect = () => {} } = props;
   const [selected, setSelected] = useState(selectedInitial);
 
@@ -28,9 +30,9 @@ const Select = ({ children = [], className, ...props }) => {
     onSelect(id);
   }
 
-  const optionList = children.map(([id, item]) => (
+  const optionList = list.map(({ value, id }) => (
     <Item key={id} className={Number(id) === Number(selected) && SELECTED} onClick={() => select(id)}>
-      {item}
+      {value}
     </Item>
   ));
 

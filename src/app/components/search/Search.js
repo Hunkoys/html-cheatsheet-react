@@ -38,8 +38,10 @@ const Search = ({ children, className, ...props }) => {
     return title.match(regex);
   });
 
+  if (matches.log) matches.log();
+
   const matchList = matches.map((value, id) => {
-    return [id, <Result id={id}>{value.title}</Result>];
+    return <Result id={id}>{value.title}</Result>;
   });
 
   return (

@@ -6,6 +6,7 @@ import debounce from './app/util/debounce';
 import network from './app/util/network';
 import './App.scss';
 import Select from './app/components/foundation/button/Select';
+import Search from './app/components/search/Search';
 
 const STATUS = {
   syncing: 'Syncing',
@@ -24,6 +25,7 @@ const App2 = ({ children, className, ...props }) => {
 
   const [entries, setEntries] = useState([]);
   const [status, setStatus] = useState(STATUS.syncing);
+  const [searchOpen, setSearchOpen] = useState(true);
 
   useEffect(() => {
     setStatus(STATUS.syncing);
@@ -86,7 +88,7 @@ const App2 = ({ children, className, ...props }) => {
         New Entry
       </button>
       <div className="status">{status}</div>
-
+      {searchOpen && <Search scope={entries} />}
       {/* <Select onSelect={handle}>
         {entries.map((entry, id) => {
           return [id, <div>{entry.title}</div>];
