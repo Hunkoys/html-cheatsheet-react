@@ -16,6 +16,7 @@ function Collection(collectionData = {}) {
     forEach,
     find,
     map,
+    filter,
     get,
     set,
     order: collectionData.order ? [...collectionData.order] : [],
@@ -68,9 +69,17 @@ function forEach(callback) {
 
 function map(callback) {
   const collection = { order: [] };
-  console.log(collection);
   this.find((value, id) => {
     collection.order.push({ id, value: callback(value, id) });
+  });
+
+  return Collection(collection);
+}
+
+function filter(callback) {
+  const collection = { order: [] };
+  this.find((value, id) => {
+    if (callback(value, id)) collection.order.push({ id, value });
   });
 
   return Collection(collection);

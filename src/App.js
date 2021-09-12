@@ -58,7 +58,6 @@ const App2 = ({ children, className, ...props }) => {
 
   function deleteHandler(id) {
     entries.delete(id);
-    console.log(entries, id);
     updateEntries();
 
     queueSave();
