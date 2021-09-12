@@ -25,7 +25,7 @@ const Entry = ({ children, className, ...props }) => {
   }
 
   const caseList = cases.map((_case, id) => {
-    return [id, <Case onChange={(part, value) => updateCases(id, part, value)}>{_case}</Case>];
+    return <Case onChange={(part, value) => updateCases(id, part, value)}>{_case}</Case>;
   });
 
   return (

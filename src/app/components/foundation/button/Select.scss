@@ -1,0 +1,13 @@
+.Select {
+  .Item {
+    cursor: pointer;
+
+    &:hover {
+      background: #ddd;
+    }
+
+    &.selected {
+      background: #bbb;
+    }
+  }
+}

@@ -5,6 +5,7 @@ import { getEntries, saveEntries } from './app/data/entries';
 import debounce from './app/util/debounce';
 import network from './app/util/network';
 import './App.scss';
+import Select from './app/components/foundation/button/Select';
 
 const STATUS = {
   syncing: 'Syncing',
@@ -55,8 +56,9 @@ const App2 = ({ children, className, ...props }) => {
     queueSave();
   }
 
-  function onDelete(id) {
+  function deleteHandler(id) {
     entries.delete(id);
+    console.log(entries, id);
     updateEntries();
 
     queueSave();
@@ -69,18 +71,28 @@ const App2 = ({ children, className, ...props }) => {
     queueSave();
   }
 
+  function handle(id) {
+    console.log(id);
+  }
+
   return (
     <main className={'App' + className}>
       <header className="header">
         <h1 className="title">HTML Cheat Sheet</h1>
       </header>
-      <Entries onChange={entryOnChangeHandler} onDelete={onDelete}>
+      <Entries onChange={entryOnChangeHandler} onDelete={deleteHandler}>
         {entries}
       </Entries>
       <button className="button new-entry-btn" onClick={newEntryClickHandler}>
         New Entry
       </button>
       <div className="status">{status}</div>
+
+      {/* <Select onSelect={handle}>
+        {entries.map((entry, id) => {
+          return [id, <div>{entry.title}</div>];
+        })}
+      </Select> */}
     </main>
   );
 };

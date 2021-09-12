@@ -26,17 +26,15 @@ const Toggle = ({ children, className, ...props }) => {
     if (text === depressed) return DEPRESSED_CLASS;
   }
 
-  return (
-    <div className={'Toggle' + className}>
-      {buttons.map((text) => {
-        return (
-          <button key={text} className={cj('button', evalClass(text))} onClick={createOnToggleHandler(text)}>
-            {text}
-          </button>
-        );
-      })}
-    </div>
-  );
+  const buttonList = buttons.map((text) => {
+    return (
+      <button key={text} className={cj('button', evalClass(text))} onClick={createOnToggleHandler(text)}>
+        {text}
+      </button>
+    );
+  });
+
+  return <div className={'Toggle' + className}>{buttonList}</div>;
 };
 
 export default Toggle;

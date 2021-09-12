@@ -41,10 +41,9 @@ const Case = ({ children = {}, className, ...props }) => {
     };
   }
 
-  const categoryList = categories.map((category, id) => [
-    id,
-    <Editable className="category" value={category} onChange={createCategoryChangeHandler(id)} />,
-  ]);
+  const categoryList = categories.map((category, id) => (
+    <Editable className="category" value={category} onChange={createCategoryChangeHandler(id)} />
+  ));
 
   function handleCardDelete(id) {
     categories.delete(id);

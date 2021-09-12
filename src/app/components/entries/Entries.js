@@ -13,11 +13,13 @@ const Entries = ({ children = [], className, ...props }) => {
     };
   }
 
+  const entryList = children.map((entry, id) => {
+    return <Entry value={entry} onChange={createOnChangeHandler(id)} />;
+  });
+
   return (
     <section className={'Entries' + className}>
-      <CardList onDelete={onDelete}>
-        {children.map((entry, id) => [id, <Entry value={entry} onChange={createOnChangeHandler(id)} />])}
-      </CardList>
+      <CardList onDelete={onDelete}>{entryList}</CardList>
     </section>
   );
 };
