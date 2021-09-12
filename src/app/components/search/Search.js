@@ -5,20 +5,16 @@ import './Search.scss';
 const Result = ({ children, className, ...props }) => {
   className = className ? ' ' + className : '';
 
-  const { id = '#' } = props;
+  const { href = '#' } = props;
 
   return (
-    <a href={id} className={'Result' + className}>
+    <a href={href} className={'Result' + className}>
       {children}
     </a>
   );
 };
 
 // Search ////////////////
-
-const keyDownMap = {
-  enter: console.log('hello'),
-};
 
 const Search = ({ children, className, ...props }) => {
   className = className ? ' ' + className : '';
@@ -28,8 +24,14 @@ const Search = ({ children, className, ...props }) => {
   const [value, setValue] = useState('');
   const [selected, setSelected] = useState(null);
 
+  const keyDownMap = {
+    enter: () => console.log('hello'),
+    arrowup: () => console.log('hi'),
+  };
+
   function handleKeyDown(e) {
     const key = e.key.toLowerCase();
+    console.log(key);
     if (keyDownMap[key]) keyDownMap[key]();
   }
 
@@ -39,7 +41,7 @@ const Search = ({ children, className, ...props }) => {
   });
 
   const matchList = matches.map((value, id) => {
-    return <Result id={`#${id}`}>{value.title}</Result>;
+    return <Result href={`#${id}`}>{value.title}</Result>;
   });
 
   return (
