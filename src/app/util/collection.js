@@ -19,6 +19,7 @@ function Collection(collectionData = {}) {
     filter,
     get,
     set,
+    log,
     order: collectionData.order ? [...collectionData.order] : [],
   };
 
@@ -97,6 +98,15 @@ function set(id, value) {
   const match = this.find((value, itemId) => Number(itemId) === id);
 
   if (match) match.value = value;
+}
+
+function log() {
+  const array = [];
+  this.forEach((value, id) => {
+    array[id] = value;
+  });
+
+  console.log(array);
 }
 
 export default Collection;
