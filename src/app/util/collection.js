@@ -37,8 +37,14 @@ function Collection(collectionData = {}) {
     previousOf(id) {
       return proximOf.call(this, id, -1);
     },
-    nextIdOf(id) {},
-    previousIdOf(id) {},
+    nextIdOf(id) {
+      const next = this.nextOf(id);
+      return next && next.id;
+    },
+    previousIdOf(id) {
+      const prev = this.previousOf(id);
+      return prev && prev.id;
+    },
     log,
     order: collectionData.order ? [...collectionData.order] : [],
   };
@@ -46,20 +52,25 @@ function Collection(collectionData = {}) {
   return collection;
 }
 
-const tw = Collection();
+// const tw = Collection();
 
-tw.push('hallo');
-tw.push('iu');
-tw.push('jackson');
-tw.push('bts');
+// tw.push('hallo');
+// tw.push('iu');
+// tw.push('jackson');
+// tw.push('bts');
 
-tw.delete(3);
+// tw.delete(2);
+// tw.delete(3);
 
-tw.log(); //?
+// tw.log(); //?
 
-tw.nextOf(2); //?
+// tw.nextOf(2); //?
 
-tw.previousOf(4); //?
+// tw.previousOf(4); //?
+
+// tw.nextIdOf(1); //?
+
+// tw.previousIdOf(4); //?
 
 function del(id) {
   id = Number(id);
