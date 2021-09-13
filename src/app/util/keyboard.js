@@ -39,6 +39,7 @@ function handleKeyDown(e) {
 
   keymapCollection.forEach((keymap) => {
     if (keymap[stroke]) keymap[stroke](e);
+    if (keymap.all) keymap.all(e);
   });
 }
 
