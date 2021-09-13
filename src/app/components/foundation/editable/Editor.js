@@ -22,6 +22,7 @@ const Editor = ({ children, className, ...props }) => {
             keyMap: 'sublime',
             mode,
             scrollbarStyle: 'null',
+            lineWrapping: true,
           }}
         />
       </div>

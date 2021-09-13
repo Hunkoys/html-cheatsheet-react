@@ -53,7 +53,7 @@ const App2 = ({ children, className, ...props }) => {
   }, []);
 
   useEffect(() => {
-    onKey('+/', (e) => {
+    onKey('+Space', (e) => {
       e.preventDefault();
       setSearchOpen(!searchOpen);
     });

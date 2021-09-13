@@ -10,7 +10,7 @@
   + Give titles anchor points
     + That's why it's a good idea to leave title scroll sticking to js
 - Implement re-order in CardsList
-- Implement sticky head
++ Implement sticky head
 + Implement order in Collection
 + Move SaveEntries to entries
 - Turn Collections to class
