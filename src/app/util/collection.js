@@ -24,6 +24,19 @@ function proximOf(id, offset) {
 function Collection(collectionData = {}) {
   const collection = {
     push,
+    insert(id, ...values) {
+      const location = this.indexOfId(id);
+
+      if (location) {
+        const index = location - 1;
+        values.reverse();
+
+        for (const value of values) {
+          const id = generateId(this);
+          this.order.splice(index, 0, { id, value });
+        }
+      }
+    },
     delete: del,
     forEach,
     find,
@@ -33,6 +46,13 @@ function Collection(collectionData = {}) {
     set,
     at(spot) {
       return this.order[spot];
+    },
+    indexOfId(id) {
+      const match = this.find((value, itemId) => {
+        return Number(id) === itemId;
+      });
+
+      if (match) return match.id;
     },
     nextOf(id) {
       return proximOf.call(this, id, 1);
@@ -74,6 +94,8 @@ function Collection(collectionData = {}) {
 
 // tw.log(); //?
 
+// tw.insert(2, 'tanglo');
+
 // tw.nextOf(2); //?
 
 // tw.previousOf(4); //?
@@ -82,7 +104,7 @@ function Collection(collectionData = {}) {
 
 // tw.previousIdOf(4); //?
 
-// tw.length; //?
+// tw.order; //?
 
 function del(id) {
   id = Number(id);
