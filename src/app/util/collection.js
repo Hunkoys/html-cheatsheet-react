@@ -46,6 +46,14 @@ function Collection(collectionData = {}) {
       return prev && prev.id;
     },
     log,
+    get length() {
+      let count = 0;
+      this.forEach(() => {
+        count++;
+      });
+
+      return count;
+    },
     order: collectionData.order ? [...collectionData.order] : [],
   };
 
@@ -59,7 +67,6 @@ function Collection(collectionData = {}) {
 // tw.push('jackson');
 // tw.push('bts');
 
-// tw.delete(2);
 // tw.delete(3);
 
 // tw.log(); //?
@@ -71,6 +78,8 @@ function Collection(collectionData = {}) {
 // tw.nextIdOf(1); //?
 
 // tw.previousIdOf(4); //?
+
+// tw.length //?
 
 function del(id) {
   id = Number(id);
