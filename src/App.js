@@ -26,10 +26,6 @@ const saveDebounce = debounce(1000, (entries, callback) => {
   });
 });
 
-window.addEventListener('scroll', () => {
-  console.log(window.scrollY);
-});
-
 const App2 = ({ children, className, ...props }) => {
   className = className ? ' ' + className : '';
 

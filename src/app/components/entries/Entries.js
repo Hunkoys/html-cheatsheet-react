@@ -1,11 +1,26 @@
 import Entry from './Entry';
 import './Entries.scss';
 import CardList from '../foundation/block/CardList';
+import { limit } from '../../util/debounce';
+import { useEffect, useState } from 'react';
 
 const Entries = ({ children = [], className, ...props }) => {
   className = className ? ' ' + className : '';
 
   const { onChange = () => {}, onDelete = () => {} } = props;
+  const [scroll, setScroll] = useState(window.scrollY);
+
+  useEffect(() => {
+    const handleScroll = limit(100, (e) => {
+      setScroll(window.scrollY);
+    });
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   function createOnChangeHandler(id) {
     return function (part, value) {
