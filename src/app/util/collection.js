@@ -31,6 +31,9 @@ function Collection(collectionData = {}) {
     filter,
     get,
     set,
+    at(spot) {
+      return this.order[spot];
+    },
     nextOf(id) {
       return proximOf.call(this, id, 1);
     },
@@ -79,7 +82,7 @@ function Collection(collectionData = {}) {
 
 // tw.previousIdOf(4); //?
 
-// tw.length //?
+// tw.length; //?
 
 function del(id) {
   id = Number(id);
