@@ -97,6 +97,7 @@ function del(id) {
 function push(value) {
   const id = generateId(this);
   this.order.push({ id, value });
+  return id;
 }
 
 function find(callback) {
