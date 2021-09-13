@@ -1,14 +1,14 @@
 - Change Handlers to say "handleSomeTask" instead of "onSomeTaskHandler"
   - Only use above if you can't turn the function into something like "changeList"
-- Implement search
-  - Display search box and the results below it. Search box filters results below by regex
-  - Results are links. Up or Down arrow will focus results.
-    - Well need to add some features to the list like stepping back or forward in a loop.
-      - pass next() and back() in HOF, if none are called then stop traversal.
-      - if next() hits the end, it returns undefined.
-      - if next() is called again, it terminates traversal.
-  - Give titles anchor points
-    - That's why it's a good idea to leave title scroll sticking to js
++ Implement search
+  + Display search box and the results below it. Search box filters results below by regex
+  + Results are links. Up or Down arrow will focus results.
+    + Well need to add some features to the list like stepping back or forward in a loop.
+      + pass next() and back() in HOF, if none are called then stop traversal.
+      + if next() hits the end, it returns undefined.
+      + if next() is called again, it terminates traversal.
+  + Give titles anchor points
+    + That's why it's a good idea to leave title scroll sticking to js
 - Implement re-order in CardsList
 - Implement sticky head
 + Implement order in Collection

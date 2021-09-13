@@ -32,6 +32,11 @@ const Search = ({ children, className, ...props }) => {
     onClose();
   }
 
+  function gotoHeading(id) {
+    window.location = `#${id}`;
+    close();
+  }
+
   const [value, setValue] = useState('');
   const [selected, setSelected] = useState();
 
@@ -67,10 +72,6 @@ const Search = ({ children, className, ...props }) => {
       if (next) setSelected(next);
     }
 
-    function gotoHeading(id) {
-      window.location = `#${id}`;
-    }
-
     onKey('ArrowUp', (e) => {
       e.preventDefault();
       selectUp();
@@ -82,7 +83,6 @@ const Search = ({ children, className, ...props }) => {
     onKey('Enter', (e) => {
       e.preventDefault();
       gotoHeading(selected);
-      close();
     });
   }, [matches, selected, value]);
 
@@ -101,7 +101,7 @@ const Search = ({ children, className, ...props }) => {
           onChange={(e) => setValue(e.target.value)}
           onBlur={(e) => e.target.focus()}
         />
-        <Select selected={selected} onSelect={(value) => setSelected(value)}>
+        <Select selected={selected} onSelect={(value) => gotoHeading(value)}>
           {matchList}
         </Select>
       </div>

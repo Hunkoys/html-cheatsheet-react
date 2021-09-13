@@ -3,9 +3,7 @@ import Entries from './app/components/entries/Entries';
 import { createEntry } from './app/data/creator';
 import { getEntries, saveEntries } from './app/data/entries';
 import debounce from './app/util/debounce';
-import network from './app/util/network';
 import './App.scss';
-import Select from './app/components/foundation/button/Select';
 import Search from './app/components/search/Search';
 import Collection from './app/util/collection';
 import { addKeymap, removeKeymap } from './app/util/keyboard';
@@ -28,12 +26,16 @@ const saveDebounce = debounce(1000, (entries, callback) => {
   });
 });
 
+window.addEventListener('scroll', () => {
+  console.log(window.scrollY);
+});
+
 const App2 = ({ children, className, ...props }) => {
   className = className ? ' ' + className : '';
 
   const [entries, setEntries] = useState(Collection());
   const [status, setStatus] = useState(STATUS.syncing);
-  const [searchOpen, setSearchOpen] = useState(true);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   useEffect(() => {
     setStatus(STATUS.syncing);
