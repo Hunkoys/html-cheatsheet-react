@@ -8,7 +8,7 @@ import Editable from '../foundation/editable/Editable';
 const COVERED = 'covered';
 
 function checkIfCovered({ top, bottom }) {
-  if (top < 0 && bottom > 0) return true;
+  if (top < 0 && bottom > 50) return true;
   return false;
 }
 
@@ -44,7 +44,9 @@ const Entry = ({ children, id, className, ...props }) => {
 
   return (
     <div id={id} className={cj('Entry', className, covered && COVERED)} ref={entryRef}>
-      <Editable className="title" value={title} onChange={(...p) => onChange('title', ...p)} placeholder="Title" />
+      <div className="header">
+        <Editable className="title" value={title} onChange={(...p) => onChange('title', ...p)} placeholder="Title" />
+      </div>
       <Editable
         className="description"
         value={description}

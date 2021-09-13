@@ -11,7 +11,7 @@ const Entries = ({ children = [], className, ...props }) => {
   const [scroll, setScroll] = useState(window.scrollY);
 
   useEffect(() => {
-    const handleScroll = limit(100, (e) => {
+    const handleScroll = limit(50, (e) => {
       setScroll(window.scrollY);
     });
 
