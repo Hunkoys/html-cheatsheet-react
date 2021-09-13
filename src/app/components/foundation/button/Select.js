@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import Collection from '../../../util/collection';
 import './Select.scss';
 
 const Item = ({ children, className, ...props }) => {
@@ -15,18 +15,18 @@ const Item = ({ children, className, ...props }) => {
 
 // Select =======================
 
+// IMplement window onKeyDown. And Global focus variable maybe redux
+
 const SELECTED = 'selected';
 
-const Select = ({ children = [], className, ...props }) => {
+const Select = ({ children = Collection(), className, ...props }) => {
   className = className ? ' ' + className : '';
 
-  const list = children.order || [];
+  const list = children.order;
 
-  const { selected: selectedInitial, onSelect = () => {} } = props;
-  const [selected, setSelected] = useState(selectedInitial);
+  const { selected, onSelect = () => {} } = props;
 
   function select(id) {
-    setSelected(id);
     onSelect(id);
   }
 
@@ -36,7 +36,11 @@ const Select = ({ children = [], className, ...props }) => {
     </Item>
   ));
 
-  return <div className={'Select' + className}>{optionList}</div>;
+  return (
+    <div className={'Select' + className} onKeyDown={(e) => console.log(e.key)}>
+      {optionList}
+    </div>
+  );
 };
 
 export default Select;

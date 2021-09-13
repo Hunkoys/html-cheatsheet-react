@@ -7,12 +7,23 @@ import network from './app/util/network';
 import './App.scss';
 import Select from './app/components/foundation/button/Select';
 import Search from './app/components/search/Search';
+import Collection from './app/util/collection';
+import { addKeymap, removeKeymap } from './app/util/keyboard';
 
 const STATUS = {
   syncing: 'Syncing',
   synced: 'Synced',
   failed: '<!> Sync Failed',
 };
+
+const keymap = {
+  Enter: () => console.log('I entered, tha`s right'),
+  ArrowUp: () => console.log('yes sir'),
+};
+
+function onKey(key, task) {
+  keymap[key] = task;
+}
 
 const saveDebounce = debounce(1000, (entries, callback) => {
   saveEntries(entries).then((result) => {
@@ -23,7 +34,7 @@ const saveDebounce = debounce(1000, (entries, callback) => {
 const App2 = ({ children, className, ...props }) => {
   className = className ? ' ' + className : '';
 
-  const [entries, setEntries] = useState([]);
+  const [entries, setEntries] = useState(Collection());
   const [status, setStatus] = useState(STATUS.syncing);
   const [searchOpen, setSearchOpen] = useState(true);
 
@@ -37,6 +48,21 @@ const App2 = ({ children, className, ...props }) => {
       setStatus(STATUS.synced);
     })();
   }, []);
+
+  useEffect(() => {
+    const keyboard = addKeymap(keymap);
+
+    return () => {
+      removeKeymap(keyboard);
+    };
+  }, []);
+
+  useEffect(() => {
+    onKey('+/', (e) => {
+      e.preventDefault();
+      setSearchOpen(!searchOpen);
+    });
+  }, [searchOpen]);
 
   function updateEntries() {
     setEntries({ ...entries });
@@ -72,10 +98,6 @@ const App2 = ({ children, className, ...props }) => {
     queueSave();
   }
 
-  function handle(id) {
-    console.log(id);
-  }
-
   return (
     <main className={'App' + className}>
       <header className="header">
@@ -89,11 +111,6 @@ const App2 = ({ children, className, ...props }) => {
       </button>
       <div className="status">{status}</div>
       {searchOpen && <Search scope={entries} />}
-      {/* <Select onSelect={handle}>
-        {entries.map((entry, id) => {
-          return [id, <div>{entry.title}</div>];
-        })}
-      </Select> */}
     </main>
   );
 };
