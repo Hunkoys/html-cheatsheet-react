@@ -15,8 +15,6 @@ const Item = ({ children, className, ...props }) => {
 
 // Select =======================
 
-// IMplement window onKeyDown.
-
 const SELECTED = 'selected';
 
 const Select = ({ children = Collection(), className, ...props }) => {

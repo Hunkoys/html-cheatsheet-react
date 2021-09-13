@@ -46,26 +46,35 @@ const Search = ({ children, className, ...props }) => {
   }, []);
 
   useEffect(() => {
-    function selectUp(e) {
-      e.preventDefault();
+    function selectUp() {
       const end = matches.length - 1;
       const last = matches.at(end) && matches.at(end).id;
       const prev = matches.previousIdOf(selected) || last;
       if (prev) setSelected(prev);
     }
 
-    function selectDown(e) {
-      e.preventDefault();
+    function selectDown() {
       const first = matches.at(0) && matches.at(0).id;
       const next = matches.nextIdOf(selected) || first;
       if (next) setSelected(next);
     }
 
-    function all(e) {}
+    function gotoHeading(id) {
+      window.location = `#${id}`;
+    }
 
-    onKey('ArrowUp', selectUp);
-    onKey('ArrowDown', selectDown);
-    onKey('all', all);
+    onKey('ArrowUp', (e) => {
+      e.preventDefault();
+      selectUp();
+    });
+    onKey('ArrowDown', (e) => {
+      e.preventDefault();
+      selectDown();
+    });
+    onKey('Enter', (e) => {
+      e.preventDefault();
+      gotoHeading(selected);
+    });
   }, [matches, selected, value]);
 
   const matchList = matches.map((value, id) => {
