@@ -49,6 +49,11 @@ const Search = ({ children, className, ...props }) => {
   }, []);
 
   useEffect(() => {
+    const first = matches.at(0) && matches.at(0).id;
+    setSelected(first);
+  }, [value]);
+
+  useEffect(() => {
     function selectUp() {
       const end = matches.length - 1;
       const last = matches.at(end) && matches.at(end).id;
