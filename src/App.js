@@ -57,6 +57,11 @@ const App2 = ({ children, className, ...props }) => {
       e.preventDefault();
       setSearchOpen(!searchOpen);
     });
+
+    onKey('Escape', (e) => {
+      e.preventDefault();
+      setSearchOpen(false);
+    });
   }, [searchOpen]);
 
   function updateEntries() {
