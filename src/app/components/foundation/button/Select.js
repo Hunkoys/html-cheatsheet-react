@@ -15,7 +15,7 @@ const Item = ({ children, className, ...props }) => {
 
 // Select =======================
 
-// IMplement window onKeyDown. And Global focus variable maybe redux
+// IMplement window onKeyDown.
 
 const SELECTED = 'selected';
 
@@ -36,11 +36,7 @@ const Select = ({ children = Collection(), className, ...props }) => {
     </Item>
   ));
 
-  return (
-    <div className={'Select' + className} onKeyDown={(e) => console.log(e.key)}>
-      {optionList}
-    </div>
-  );
+  return <div className={'Select' + className}>{optionList}</div>;
 };
 
 export default Select;
