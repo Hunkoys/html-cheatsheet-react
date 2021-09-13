@@ -61,29 +61,26 @@ const Search = ({ children, className, ...props }) => {
       if (next) setSelected(next);
     }
 
+    function all(e) {}
+
     onKey('ArrowUp', selectUp);
     onKey('ArrowDown', selectDown);
+    onKey('all', all);
   }, [matches, selected, value]);
 
   const matchList = matches.map((value, id) => {
     return <Result href={`#${id}`}>{value.title}</Result>;
   });
 
-  // const keyDownMap = {
-  //   enter: () => console.log('hello'),
-  //   arrowup: selectUp,
-  //   arrowdown: selectDown,
-  // };
-
-  // function handleKeyDown(e) {
-  //   const key = e.key.toLowerCase();
-  //   console.log(key);
-  //   if (keyDownMap[key]) keyDownMap[key](e);
-  // }
-
   return (
     <div className={'Search' + className}>
-      <input type="text" value={value} onChange={(e) => setValue(e.target.value)} />
+      <input
+        type="text"
+        autoFocus
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        onBlur={(e) => e.target.focus()}
+      />
       <Select selected={selected} onSelect={(value) => setSelected(value)}>
         {matchList}
       </Select>
