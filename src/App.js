@@ -16,10 +16,7 @@ const STATUS = {
   failed: '<!> Sync Failed',
 };
 
-const keymap = {
-  Enter: () => console.log('I entered, tha`s right'),
-  ArrowUp: () => console.log('yes sir'),
-};
+const keymap = {};
 
 function onKey(key, task) {
   keymap[key] = task;
@@ -110,7 +107,7 @@ const App2 = ({ children, className, ...props }) => {
         New Entry
       </button>
       <div className="status">{status}</div>
-      {searchOpen && <Search scope={entries} />}
+      {searchOpen && <Search scope={entries} onClose={() => setSearchOpen(false)} />}
     </main>
   );
 };

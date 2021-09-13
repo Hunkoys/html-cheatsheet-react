@@ -27,7 +27,10 @@ const Result = ({ children, className, ...props }) => {
 const Search = ({ children, className, ...props }) => {
   className = className ? ' ' + className : '';
 
-  const { scope = Collection() } = props;
+  const { scope = Collection(), onClose = () => {} } = props;
+  function close() {
+    onClose();
+  }
 
   const [value, setValue] = useState('');
   const [selected, setSelected] = useState();
@@ -74,6 +77,7 @@ const Search = ({ children, className, ...props }) => {
     onKey('Enter', (e) => {
       e.preventDefault();
       gotoHeading(selected);
+      close();
     });
   }, [matches, selected, value]);
 
