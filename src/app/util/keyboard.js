@@ -11,11 +11,34 @@ function removeKeymap(id) {
   keymapCollection.delete(id);
 }
 
+const MODS = ['Control', 'Alt', 'Shift', 'Meta'];
+const SHORTS = {
+  Control: '+',
+  Alt: '!',
+  Shift: '^',
+  Meta: '#',
+};
+
+function nameKey(key) {
+  if (key === ' ') return 'Space';
+  return key;
+}
+
 function handleKeyDown(e) {
-  const { key } = e;
+  const { key, ctrlKey, altKey, shiftKey, metaKey } = e;
+
+  const keyName = nameKey(key);
+
+  let stroke = '';
+  if (ctrlKey) stroke += SHORTS.Control;
+  if (altKey) stroke += SHORTS.Alt;
+  if (shiftKey) stroke += SHORTS.Shift;
+  if (metaKey) stroke += SHORTS.Meta;
+
+  if (!MODS.includes(keyName)) stroke += keyName;
 
   keymapCollection.forEach((keymap) => {
-    if (keymap[key]) keymap[key](e);
+    if (keymap[stroke]) keymap[stroke](e);
   });
 }
 
