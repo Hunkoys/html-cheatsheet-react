@@ -1,0 +1,23 @@
+.FloatingButton {
+  width: 100%;
+  display: flex;
+
+  .click-area {
+    height: 100%;
+    width: 100%;
+    background: none;
+    border: none;
+    outline: none;
+  }
+
+  .rail {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .floater {
+    display: inline-block;
+    // margin-left: -80px;
+    pointer-events: none;
+  }
+}

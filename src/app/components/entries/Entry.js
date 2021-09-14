@@ -3,6 +3,7 @@ import { createCase } from '../../data/creator';
 import { cj } from '../../util/classJoin';
 import Case from '../case/Case';
 import CardList from '../foundation/block/CardList';
+import FloatingButton from '../foundation/button/FloatingButton';
 import Editable from '../foundation/editable/Editable';
 
 const COVERED = 'covered';
@@ -63,7 +64,7 @@ const Entry = ({ children, id, className, ...props }) => {
         </button>
       </div>
 
-      <button className="button new-entry-btn">+</button>
+      <FloatingButton>+</FloatingButton>
     </div>
   );
 };
