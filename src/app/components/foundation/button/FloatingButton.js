@@ -42,17 +42,17 @@ const FloatingButton = ({ children, className, ...props }) => {
   }
 
   function handlePointerMove(e) {
-    const left = e.clientX - elRef.current.getBoundingClientRect().left;
-
     limiters[limiterToken](updateRect);
+
+    const left = e.clientX - rect.left;
     setLeft(left);
   }
 
   return (
     <div className={'FloatingButton' + className} ref={elRef} onMouseMove={handlePointerMove}>
-      <button className="click-area"></button>
+      <button className="click-area" onClick={onClick}></button>
       <div className="rail"></div>
-      <div className="floater" style={{ position: 'absolute', left }} onClick={onClick}>
+      <div className="floater" style={{ position: 'absolute', left }}>
         {children}
       </div>
     </div>

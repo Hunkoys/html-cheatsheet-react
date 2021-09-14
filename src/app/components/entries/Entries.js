@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 const Entries = ({ children = [], className, ...props }) => {
   className = className ? ' ' + className : '';
 
-  const { onChange = () => {}, onDelete = () => {} } = props;
+  const { onChange = () => {}, onDelete = () => {}, onInsert = () => {} } = props;
   const [scroll, setScroll] = useState(window.scrollY);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const Entries = ({ children = [], className, ...props }) => {
   }
 
   const entryList = children.map((entry, id) => {
-    return <Entry id={`${id}`} value={entry} onChange={createOnChangeHandler(id)} />;
+    return <Entry id={`${id}`} value={entry} onChange={createOnChangeHandler(id)} onInsert={() => onInsert(id)} />;
   });
 
   return (

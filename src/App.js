@@ -98,12 +98,19 @@ const App2 = ({ children, className, ...props }) => {
     queueSave();
   }
 
+  function insertHandler(id) {
+    entries.insert(id, createEntry());
+    updateEntries();
+
+    queueSave();
+  }
+
   return (
     <main className={'App' + className}>
       <header className="header">
         <h1 className="title">HTML Cheat Sheet</h1>
       </header>
-      <Entries onChange={entryOnChangeHandler} onDelete={deleteHandler}>
+      <Entries onChange={entryOnChangeHandler} onDelete={deleteHandler} onInsert={insertHandler}>
         {entries}
       </Entries>
       <button className="button new-entry-btn" onClick={newEntryClickHandler}>

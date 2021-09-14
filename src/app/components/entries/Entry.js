@@ -18,7 +18,7 @@ const Entry = ({ children, id, className, ...props }) => {
 
   const entryRef = useRef(null);
 
-  const { value, onChange = () => {} } = props;
+  const { value, onChange = () => {}, onInsert = () => {} } = props;
   const { title, description, cases = [], details } = value;
 
   const rect = entryRef.current && entryRef.current.getBoundingClientRect();
@@ -64,7 +64,7 @@ const Entry = ({ children, id, className, ...props }) => {
         </button>
       </div>
 
-      <FloatingButton>+</FloatingButton>
+      <FloatingButton onClick={onInsert}>+</FloatingButton>
     </div>
   );
 };
