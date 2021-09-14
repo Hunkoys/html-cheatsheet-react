@@ -1,0 +1,31 @@
+.TableOfContents {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  background: #aaa;
+
+  .item {
+    height: 1em; // property height required for Table of contents
+  }
+
+  .item .text {
+    pointer-events: none !important;
+    position: relative !important;
+    top: 0;
+  }
+
+  .above .text,
+  .below .text {
+    transition: top 300ms cubic-bezier(0, 1, 0, 1);
+  }
+
+  .above.covered .text {
+    top: 100%;
+  }
+
+  .below.covered .text,
+  .below.hovered .text {
+    top: -100%;
+  }
+}

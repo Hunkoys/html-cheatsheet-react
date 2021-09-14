@@ -7,6 +7,7 @@ import './App.scss';
 import Search from './app/components/search/Search';
 import Collection from './app/util/collection';
 import { addKeymap, removeKeymap } from './app/util/keyboard';
+import TableOfContents from './app/components/table-of-contents/TableOfContents';
 
 const STATUS = {
   syncing: 'Syncing',
@@ -32,6 +33,7 @@ const App2 = ({ children, className, ...props }) => {
   const [entries, setEntries] = useState(Collection());
   const [status, setStatus] = useState(STATUS.syncing);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [tableOfContentsOpen, setTableOfContentsOpen] = useState(true);
 
   useEffect(() => {
     setStatus(STATUS.syncing);
@@ -118,6 +120,7 @@ const App2 = ({ children, className, ...props }) => {
       </button>
       <div className="status">{status}</div>
       {searchOpen && <Search scope={entries} onClose={() => setSearchOpen(false)} />}
+      {tableOfContentsOpen && <TableOfContents>{entries}</TableOfContents>}
     </main>
   );
 };
