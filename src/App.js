@@ -33,7 +33,7 @@ const App2 = ({ children, className, ...props }) => {
   const [entries, setEntries] = useState(Collection());
   const [status, setStatus] = useState(STATUS.syncing);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [tableOfContentsOpen, setTableOfContentsOpen] = useState(true);
+  const [tableOfContentsOpen, setTableOfContentsOpen] = useState(false);
 
   useEffect(() => {
     setStatus(STATUS.syncing);

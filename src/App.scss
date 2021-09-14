@@ -23,10 +23,16 @@
       align-items: center;
 
       & > .Card {
+        $margin-top: 30px;
+
         // max-width: 1300px;
         width: 100%;
 
         // box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+
+        & > .close-btn {
+          top: $margin-top;
+        }
 
         .Entry {
           $entry-padding-sides: 20px;
@@ -34,7 +40,7 @@
 
           display: flex;
           flex-direction: column;
-          margin-bottom: 20px;
+          padding-top: $margin-top;
 
           .card {
             display: grid;
