@@ -1,10 +1,25 @@
 .TableOfContents {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 0;
-  background: #aaa;
+  $bot-border-radius: 15px;
 
+  display: flex;
+  position: absolute;
+  top: 20vh;
+  flex-direction: column;
+  align-items: stretch;
+  background: #282a36;
+  padding: 10px 15px;
+  border-radius: $bot-border-radius;
+  width: 40vw;
+  max-width: 550px;
+
+  .item {
+    height: 50px;
+  }
+}
+
+// Might move this to Draggable.js
+
+.TableOfContents {
   .item {
     height: 2em; // property height required for Table of contents
   }

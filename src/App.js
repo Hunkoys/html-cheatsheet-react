@@ -58,13 +58,22 @@ const App2 = ({ children, className, ...props }) => {
     onKey('+Space', (e) => {
       e.preventDefault();
       setSearchOpen(!searchOpen);
+      setTableOfContentsOpen(false);
+    });
+
+    onKey('+k', (e) => {
+      e.preventDefault();
+      console.log(tableOfContentsOpen);
+      setTableOfContentsOpen(!tableOfContentsOpen);
+      setSearchOpen(false);
     });
 
     onKey('Escape', (e) => {
       e.preventDefault();
       setSearchOpen(false);
+      setTableOfContentsOpen(false);
     });
-  }, [searchOpen]);
+  }, [searchOpen, tableOfContentsOpen]);
 
   function updateEntries() {
     setEntries({ ...entries });
@@ -107,7 +116,6 @@ const App2 = ({ children, className, ...props }) => {
   function insertHandler(id) {
     id = entries.nextIdOf(id);
 
-    console.log(id);
     if (id === null) {
       newEntry();
     } else {
@@ -142,8 +150,10 @@ const App2 = ({ children, className, ...props }) => {
         New Entry
       </button>
       <div className="status">{status}</div>
-      {searchOpen && <Search scope={entries} onClose={() => setSearchOpen(false)} />}
-      {tableOfContentsOpen && <TableOfContents onSwitch={switchHandler}>{entries}</TableOfContents>}
+      <div className="modal">
+        {searchOpen && <Search scope={entries} onClose={() => setSearchOpen(false)} />}
+        {tableOfContentsOpen && <TableOfContents onSwitch={switchHandler}>{entries}</TableOfContents>}
+      </div>
     </main>
   );
 };

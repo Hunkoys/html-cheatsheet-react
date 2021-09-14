@@ -92,19 +92,17 @@ const Search = ({ children, className, ...props }) => {
 
   return (
     <div className={'Search' + className}>
-      <div className="container">
-        <input
-          className="search-box"
-          type="text"
-          autoFocus
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          onBlur={(e) => e.target.focus()}
-        />
-        <Select selected={selected} onSelect={(value) => gotoHeading(value)}>
-          {matchList}
-        </Select>
-      </div>
+      <input
+        className="search-box"
+        type="text"
+        autoFocus
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        onBlur={(e) => e.target.focus()}
+      />
+      <Select selected={selected} onSelect={(value) => gotoHeading(value)}>
+        {matchList}
+      </Select>
     </div>
   );
 };
