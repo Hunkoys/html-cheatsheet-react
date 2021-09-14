@@ -25,10 +25,9 @@ function Collection(collectionData = {}) {
   const collection = {
     push,
     insert(id, ...values) {
-      const location = this.indexOfId(id);
+      const index = this.indexOfId(id);
 
-      if (location) {
-        const index = location - 1;
+      if (index != undefined) {
         values.reverse();
 
         for (const value of values) {
@@ -48,11 +47,13 @@ function Collection(collectionData = {}) {
       return this.order[spot];
     },
     indexOfId(id) {
-      const match = this.find((value, itemId) => {
-        return Number(id) === itemId;
+      const index = this.order.findIndex((value) => {
+        if (Number(id) === value.id) {
+          return true;
+        }
       });
 
-      if (match) return match.id;
+      return index < 0 ? undefined : index;
     },
     nextOf(id) {
       return proximOf.call(this, id, 1);
@@ -90,21 +91,11 @@ function Collection(collectionData = {}) {
 // tw.push('jackson');
 // tw.push('bts');
 
-// tw.delete(3);
+// tw.delete(2);
+
+// tw.indexOfId(4); //?
 
 // tw.log(); //?
-
-// tw.insert(2, 'tanglo');
-
-// tw.nextOf(2); //?
-
-// tw.previousOf(4); //?
-
-// tw.nextIdOf(1); //?
-
-// tw.previousIdOf(4); //?
-
-// tw.order; //?
 
 function del(id) {
   id = Number(id);
@@ -173,9 +164,9 @@ function set(id, value) {
 }
 
 function log() {
-  const array = {};
+  const array = [];
   this.forEach((value, id) => {
-    array[id] = value;
+    array.push({ id, value });
   });
 
   console.log(array);
