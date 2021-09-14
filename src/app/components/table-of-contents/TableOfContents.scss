@@ -1,27 +1,13 @@
-.TableOfContents {
-  $bot-border-radius: 15px;
-
-  display: flex;
-  position: absolute;
-  top: 20vh;
-  flex-direction: column;
-  align-items: stretch;
-  background: #282a36;
-  padding: 10px 15px;
-  border-radius: $bot-border-radius;
-  width: 40vw;
-  max-width: 550px;
-
-  .item {
-    height: 50px;
-  }
-}
+$item-v-padding: 10px;
+$item-v-margin: 8px;
+$item-height: 50px;
 
 // Might move this to Draggable.js
 
 .TableOfContents {
   .item {
     height: 2em; // property height required for Table of contents
+    cursor: pointer;
   }
 
   .item .text {
@@ -36,17 +22,73 @@
   }
 
   .above.covered .text {
-    top: 100%;
+    top: $item-height + $item-v-margin;
   }
 
   .below.covered .text,
   .below.hovered .text {
-    top: -100%;
+    top: -($item-height + $item-v-margin);
   }
 
   //sdfs
+  .dragged .text {
+    z-index: 10;
+  }
 
   .hovered {
     background: #888;
+  }
+}
+
+// USER
+
+.TableOfContents {
+  $bot-border-radius: 15px;
+
+  display: flex;
+  position: absolute;
+  top: 20vh;
+  flex-direction: column;
+  align-items: stretch;
+  background: #d7dce2;
+  padding: 15px;
+  border-radius: $bot-border-radius;
+  width: 40vw;
+  max-width: 550px;
+
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+  .title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2em;
+  }
+
+  .list {
+    max-height: 55vh;
+    overflow: auto;
+
+    .item {
+      height: $item-height;
+
+      background: none;
+      margin: $item-v-margin 12px;
+
+      .text {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        padding: $item-v-padding 30px;
+        border-radius: 10px;
+        background: #177181;
+        color: white;
+      }
+    }
+
+    .dragged .text {
+      background: #32abc0;
+    }
   }
 }

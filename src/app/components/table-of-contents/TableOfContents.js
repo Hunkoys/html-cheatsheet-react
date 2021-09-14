@@ -85,7 +85,8 @@ const TableOfContents = ({ children, className, ...props }) => {
       onMouseLeave={stopDrag}
       onMouseMove={onDrag}
     >
-      {itemList}
+      <h2 className="title">Table Of Contents</h2>
+      <div className="list">{itemList}</div>
     </div>
   );
 };
