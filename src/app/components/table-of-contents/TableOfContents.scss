@@ -6,7 +6,7 @@
   background: #aaa;
 
   .item {
-    height: 1em; // property height required for Table of contents
+    height: 2em; // property height required for Table of contents
   }
 
   .item .text {
@@ -27,5 +27,11 @@
   .below.covered .text,
   .below.hovered .text {
     top: -100%;
+  }
+
+  //sdfs
+
+  .hovered {
+    background: #888;
   }
 }

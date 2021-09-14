@@ -1,18 +1,27 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { cj } from '../../util/classJoin';
 import './TableOfContents.scss';
 
 const TableOfContents = ({ children, className, ...props }) => {
   className = className ? ' ' + className : '';
 
+  const { onSwitch = () => {} } = props;
   const copy = { ...children };
-  const list = copy.order || [];
 
   const draggedRef = useRef(null);
 
   const [dragged, setDragged] = useState();
   const [hovered, setHovered] = useState();
   const [dragStart, setDragStart] = useState();
+
+  const list = copy.order || [];
+
+  function switchUp() {
+    if (!(dragged && hovered)) return;
+    if (dragged !== hovered) {
+      onSwitch(dragged, hovered);
+    }
+  }
 
   function startDrag(e) {
     e.preventDefault();
@@ -21,6 +30,8 @@ const TableOfContents = ({ children, className, ...props }) => {
 
   function stopDrag(e) {
     e.preventDefault();
+
+    switchUp();
 
     if (draggedRef.current) draggedRef.current.style.top = '';
     setDragged(null);

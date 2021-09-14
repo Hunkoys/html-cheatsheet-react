@@ -93,15 +93,38 @@ const App2 = ({ children, className, ...props }) => {
     queueSave();
   }
 
-  function newEntryClickHandler() {
-    entries.push(createEntry());
+  function newEntry(entry = createEntry()) {
+    entries.push(entry);
     updateEntries();
 
     queueSave();
   }
 
+  function newEntryClickHandler() {
+    newEntry();
+  }
+
   function insertHandler(id) {
-    entries.insert(id, createEntry());
+    id = entries.nextIdOf(id);
+
+    console.log(id);
+    if (id === null) {
+      newEntry();
+    } else {
+      entries.insert(id, createEntry());
+      updateEntries();
+
+      queueSave();
+    }
+  }
+
+  function switchHandler(dragged, hovered) {
+    const draggedIndex = entries.indexOfId(dragged);
+    const value = entries.at(draggedIndex);
+    const hoveredIndex = entries.indexOfId(hovered);
+
+    entries.delete(dragged);
+    entries.order.splice(hoveredIndex, 0, value);
     updateEntries();
 
     queueSave();
@@ -120,7 +143,7 @@ const App2 = ({ children, className, ...props }) => {
       </button>
       <div className="status">{status}</div>
       {searchOpen && <Search scope={entries} onClose={() => setSearchOpen(false)} />}
-      {tableOfContentsOpen && <TableOfContents>{entries}</TableOfContents>}
+      {tableOfContentsOpen && <TableOfContents onSwitch={switchHandler}>{entries}</TableOfContents>}
     </main>
   );
 };
