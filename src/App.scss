@@ -102,8 +102,45 @@
           }
 
           .FloatingButton {
-            height: 50px;
-            outline: 1px solid salmon;
+            $height: 40px;
+            $opacity-transition: opacity 300ms cubic-bezier(0, 0.8, 0, 1);
+
+            position: relative;
+            height: $height;
+            // outline: 1px solid salmon;
+
+            .rail {
+              top: $height / 2;
+              height: 4px;
+              background: #282a36;
+              opacity: 0.1;
+              border-radius: 2px;
+              transition: $opacity-transition;
+            }
+
+            .floater {
+              opacity: 0;
+              background: #fa8072;
+              color: white;
+              font-size: 2.5em;
+              line-height: 0.82;
+              text-align: center;
+              border-radius: $height / 2;
+              margin-left: $height / -2;
+              height: $height;
+              width: $height;
+              transition: $opacity-transition;
+            }
+
+            &:hover {
+              .rail {
+                opacity: 0.9;
+              }
+
+              .floater {
+                opacity: 1;
+              }
+            }
           }
         }
       }

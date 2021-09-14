@@ -13,11 +13,11 @@
   .rail {
     position: absolute;
     pointer-events: none;
+    width: 100%;
   }
 
   .floater {
     display: inline-block;
-    // margin-left: -80px;
     pointer-events: none;
   }
 }
