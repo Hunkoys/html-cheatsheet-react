@@ -28,71 +28,77 @@
         // box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 
         .Entry {
-          $border-radius: 20px;
-          $entry-padding-sides: 20px;
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 20px;
 
-          display: grid;
-          grid-template-columns: repeat(8, 1fr);
-          grid-template-rows: 80px repeat(3, auto);
-          grid-template-areas:
-            't t t t t t t t'
-            'd d d d d d d d'
-            'c c c c c c c c'
-            'n n n n n n n n';
-          width: 100%;
-          padding: 5px $entry-padding-sides;
-          margin-bottom: 40px;
-          border-radius: $border-radius;
-          background: var(--App-color-main);
+          .card {
+            $border-radius: 20px;
+            $entry-padding-sides: 20px;
 
-          box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: 80px repeat(3, auto);
+            grid-template-areas:
+              't t t t t t t t'
+              'd d d d d d d d'
+              'c c c c c c c c'
+              'n n n n n n n n';
+            width: 100%;
+            padding: 5px $entry-padding-sides;
+            border-radius: $border-radius;
+            background: var(--App-color-main);
+            margin-bottom: 20px;
 
-          &.covered {
-            .header {
-              position: fixed;
-              top: 0;
-              left: 0;
-              z-index: 11;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 
-              padding-left: $app-margin;
-              padding-right: $app-margin;
+            &.covered {
+              .header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 11;
 
-              .title {
-                padding-left: $entry-padding-sides;
-                background: var(--App-color-main);
-                border-radius: 0 0 $border-radius $border-radius;
-                box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+                padding-left: $app-margin;
+                padding-right: $app-margin;
 
-                box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px,
-                  rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                .title {
+                  padding-left: $entry-padding-sides;
+                  background: var(--App-color-main);
+                  border-radius: 0 0 $border-radius $border-radius;
+                  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+
+                  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px,
+                    rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                }
               }
             }
-          }
 
-          .header {
-            grid-area: t;
-            width: 100%;
+            .header {
+              grid-area: t;
+              width: 100%;
 
-            .title {
-              color: rgb(250, 250, 250);
-              height: 80px;
-              font-size: 2.5em;
-              font-weight: bold;
+              .title {
+                color: rgb(250, 250, 250);
+                height: 80px;
+                font-size: 2.5em;
+                font-weight: bold;
+              }
             }
-          }
 
-          .description {
-            grid-area: d;
-          }
+            .description {
+              grid-area: d;
+            }
 
-          .case-list {
-            grid-area: c;
-          }
+            .case-list {
+              grid-area: c;
+            }
 
-          .new-case-btn {
-            grid-area: n;
-            width: 100px;
-            height: 30px;
+            .new-case-btn {
+              grid-area: n;
+              width: 100px;
+              height: 30px;
+            }
           }
         }
       }

@@ -44,22 +44,26 @@ const Entry = ({ children, id, className, ...props }) => {
 
   return (
     <div id={id} className={cj('Entry', className, covered && COVERED)} ref={entryRef}>
-      <div className="header">
-        <Editable className="title" value={title} onChange={(...p) => onChange('title', ...p)} placeholder="Title" />
-      </div>
-      <Editable
-        className="description"
-        value={description}
-        onChange={(...p) => onChange('description', ...p)}
-        placeholder="Description"
-      />
+      <div className="card">
+        <div className="header">
+          <Editable className="title" value={title} onChange={(...p) => onChange('title', ...p)} placeholder="Title" />
+        </div>
+        <Editable
+          className="description"
+          value={description}
+          onChange={(...p) => onChange('description', ...p)}
+          placeholder="Description"
+        />
 
-      <CardList className="case-list" onDelete={onCaseDeleteHandler}>
-        {caseList}
-      </CardList>
-      <button className="button new-case-btn" onClick={pushNewCase}>
-        New Case
-      </button>
+        <CardList className="case-list" onDelete={onCaseDeleteHandler}>
+          {caseList}
+        </CardList>
+        <button className="button new-case-btn" onClick={pushNewCase}>
+          New Case
+        </button>
+      </div>
+
+      <button className="button new-entry-btn">+</button>
     </div>
   );
 };
