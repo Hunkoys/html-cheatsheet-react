@@ -18,7 +18,7 @@ function proximOf(id, offset) {
   const match = subjectIndex < 0 ? false : true;
   const index = match ? subjectIndex + offset : -1;
 
-  return order[index];
+  return order[index] || null;
 }
 
 function Collection(collectionData = {}) {
