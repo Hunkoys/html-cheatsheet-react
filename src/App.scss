@@ -29,14 +29,14 @@
         // box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 
         .Entry {
+          $entry-padding-sides: 20px;
+          $border-radius: 20px;
+
           display: flex;
           flex-direction: column;
           margin-bottom: 20px;
 
           .card {
-            $border-radius: 20px;
-            $entry-padding-sides: 20px;
-
             display: grid;
             grid-template-columns: repeat(8, 1fr);
             grid-template-rows: 80px repeat(3, auto);
@@ -52,28 +52,6 @@
             margin-bottom: 20px;
 
             box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-
-            &.covered {
-              .header {
-                position: fixed;
-                top: 0;
-                left: 0;
-                z-index: 11;
-
-                padding-left: $app-margin;
-                padding-right: $app-margin;
-
-                .title {
-                  padding-left: $entry-padding-sides;
-                  background: var(--App-color-main);
-                  border-radius: 0 0 $border-radius $border-radius;
-                  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-
-                  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px,
-                    rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-                }
-              }
-            }
 
             .header {
               grid-area: t;
@@ -140,6 +118,28 @@
 
               .floater {
                 opacity: 1;
+              }
+            }
+          }
+
+          &.covered {
+            .header {
+              position: fixed;
+              top: 0;
+              left: 0;
+              z-index: 11;
+
+              padding-left: $app-margin;
+              padding-right: $app-margin;
+
+              .title {
+                padding-left: $entry-padding-sides;
+                background: var(--App-color-main);
+                border-radius: 0 0 $border-radius $border-radius;
+                box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+
+                box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px,
+                  rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
               }
             }
           }
