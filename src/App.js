@@ -8,11 +8,12 @@ import Search from './app/components/search/Search';
 import Collection from './app/util/collection';
 import { addKeymap, removeKeymap } from './app/util/keyboard';
 import TableOfContents from './app/components/table-of-contents/TableOfContents';
+import { cj } from './app/util/classJoin';
 
 const STATUS = {
-  syncing: 'Syncing',
-  synced: 'Synced',
-  failed: '<!> Sync Failed',
+  syncing: 'syncing',
+  synced: 'synced',
+  failed: 'failed',
 };
 
 const keymap = {};
@@ -22,9 +23,13 @@ function onKey(key, task) {
 }
 
 const saveDebounce = debounce(1000, (entries, callback) => {
-  saveEntries(entries).then((result) => {
-    callback(result);
-  });
+  saveEntries(entries)
+    .then((result) => {
+      callback(result);
+    })
+    .catch((err) => {
+      callback(err);
+    });
 });
 
 const App2 = ({ children, className, ...props }) => {
@@ -109,10 +114,6 @@ const App2 = ({ children, className, ...props }) => {
     queueSave();
   }
 
-  function newEntryClickHandler() {
-    newEntry();
-  }
-
   function insertHandler(id) {
     id = entries.nextIdOf(id);
 
@@ -146,10 +147,10 @@ const App2 = ({ children, className, ...props }) => {
       <Entries onChange={entryOnChangeHandler} onDelete={deleteHandler} onInsert={insertHandler}>
         {entries}
       </Entries>
-      <button className="button new-entry-btn" onClick={newEntryClickHandler}>
-        New Entry
-      </button>
-      <div className="status">{status}</div>
+
+      <div className={cj('status', status)}>
+        <abbr className="bulb" title={status}></abbr>
+      </div>
       <div className="modal">
         {searchOpen && <Search scope={entries} onClose={() => setSearchOpen(false)} />}
         {tableOfContentsOpen && <TableOfContents onSwitch={switchHandler}>{entries}</TableOfContents>}

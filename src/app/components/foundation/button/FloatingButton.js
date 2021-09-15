@@ -1,5 +1,4 @@
-import { useRef, useState } from 'react';
-import { useEffect } from 'react/cjs/react.development';
+import { useEffect, useRef, useState } from 'react';
 import { limit } from '../../../util/debounce';
 import './FloatingButton.scss';
 
