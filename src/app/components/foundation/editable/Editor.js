@@ -1,6 +1,8 @@
 import ReactCodemirror from '@uiw/react-codemirror';
 import 'codemirror/keymap/sublime';
 import 'codemirror/theme/dracula.css';
+import 'codemirror/addon/comment/comment';
+import 'codemirror/addon/edit/matchbrackets';
 import './Editor.scss';
 
 const Editor = ({ children, className, ...props }) => {
